@@ -8,9 +8,13 @@ import siteConfig from './src/site.config.ts';
 import { satteri } from '@astrojs/markdown-satteri';
 import satteriBaseUrls from './src/lib/satteri-base-urls.ts';
 
-// Served from a GitHub Pages project site: https://kpab.github.io/astro-haze/
-const SITE = 'https://kpab.github.io';
-const BASE = '/astro-haze';
+// Vercel serves the app from the domain root by default. If you later add a
+// custom domain or a different production URL, override PUBLIC_SITE_URL in the
+// project settings instead of hardcoding a GitHub Pages subpath here.
+const SITE =
+  process.env.PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xavi-portafoli-web-git-main-xavi16.vercel.app');
+const BASE = '/';
 const BLOG_DIR = 'src/content/blog';
 
 /** Every Markdown/MDX file under `dir`, as paths relative to it. */

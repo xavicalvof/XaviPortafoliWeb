@@ -74,12 +74,16 @@ export interface SiteConfig {
   };
 }
 
+const SITE_URL =
+  process.env.PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xavi-portafoli-web-git-main-xavi16.vercel.app');
+
 const siteConfig: SiteConfig = {
   name: 'Astro Haze',
   title: 'Astro Haze - Glassmorphism Theme',
   description: 'A beautiful glassmorphism multi-purpose theme for Astro 7',
   author: 'Your Name',
-  url: 'https://kpab.github.io/astro-haze',
+  url: SITE_URL,
   ogImage: '/og-image.png',
   twitterHandle: '@yourusername',
   lang: 'en',
