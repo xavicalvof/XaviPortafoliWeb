@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/common/Header.astro';
+import Picture from '@/components/ui/Picture.astro';
+import homeImage from '@/assets/images/Inicio/image (6).png';
+
+const slides = [
+  { src: homeImage, alt: 'Imagen de inicio' },
+];
 ---
 
 <BaseLayout
@@ -10,7 +16,28 @@ import Header from '@/components/common/Header.astro';
   <Header overlay />
 
   <main id="main" tabindex="-1">
-    <section class="home-hero" aria-label="Presentación"></section>
+    <section class="home-hero" aria-label="Presentación">
+      <div class="home-slides">
+        {slides.map((slide, index) => (
+          <div class:list={['home-slide', { 'is-active': index === 0 }]}>
+            <Picture
+              src={slide.src}
+              alt={slide.alt}
+              widths={[768, 1200, 1600, 2200]}
+              sizes="100vw"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'low'}
+            />
+          </div>
+        ))}
+      </div>
+      {slides.length > 1 && (
+        <>
+          <button class="slide-arrow slide-arrow--previous" type="button" aria-label="Imagen anterior">&#8592;</button>
+          <button class="slide-arrow slide-arrow--next" type="button" aria-label="Imagen siguiente">&#8594;</button>
+        </>
+      )}
+    </section>
   </main>
 </BaseLayout>
 
@@ -26,4 +53,62 @@ import Header from '@/components/common/Header.astro';
     overflow: hidden;
     background: #000;
   }
+
+  .home-slides,
+  .home-slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  .home-slide {
+    opacity: 0;
+    transition: opacity 700ms ease;
+  }
+
+  .home-slide.is-active { opacity: 1; }
+
+  .home-slide :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .slide-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 3rem;
+    height: 5rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 2rem;
+    transform: translateY(-50%);
+    transition: color 180ms ease, background-color 180ms ease;
+  }
+
+  .slide-arrow:hover,
+  .slide-arrow:focus-visible { color: white; background: rgba(0, 0, 0, 0.18); }
+  .slide-arrow--previous { left: 0.5rem; }
+  .slide-arrow--next { right: 0.5rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-slide { transition: none; }
+  }
 </style>
+
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.home-slide'));
+  const previous = document.querySelector<HTMLButtonElement>('.slide-arrow--previous');
+  const next = document.querySelector<HTMLButtonElement>('.slide-arrow--next');
+  let activeIndex = 0;
+
+  function showSlide(index: number) {
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === activeIndex));
+  }
+
+  if (slides.length > 1) {
+    previous?.addEventListener('click', () => showSlide(activeIndex - 1));
+    next?.addEventListener('click', () => showSlide(activeIndex + 1));
+    window.setInterval(() => showSlide(activeIndex + 1), 6000);
+  }
+</script>

@@ -1,9 +1,9 @@
 ---
-title: 'Northstar Civic Platform'
+title: 'Recreación Llotja Mallorca'
 summary: 'A calm, accessible service hub that helps residents find local support without learning how government is organized.'
 description: 'Northstar turns a fragmented catalogue of city services into a task-focused experience designed for stressful, time-sensitive moments.'
-cover: '../../assets/images/projects/northstar-cover.webp'
-coverAlt: 'Northstar service finder shown across desktop and mobile screens'
+cover: '../../assets/images/Proyectos/Recreación Llotja Mallorca/PortadaLlotjaMallorca.jpg'
+coverAlt: 'Portada del proyecto Recreación Llotja Mallorca'
 images:
   - '../../assets/images/projects/northstar-search.webp'
   - '../../assets/images/projects/northstar-mobile.webp'

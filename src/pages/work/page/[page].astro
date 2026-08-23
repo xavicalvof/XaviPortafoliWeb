@@ -9,10 +9,16 @@ import WorkArchive from '@/components/portfolio/WorkArchive.astro';
 import siteConfig from '@/site.config';
 
 export const getStaticPaths = (async () => {
-  const projects = (await getCollection('projects')).sort((a, b) => {
-    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-    return b.data.year - a.data.year;
-  });
+  const projectOrder = [
+    'fieldnote-research-library',
+    'interval-health-companion',
+    'afterlight-cultural-archive',
+    'northstar-civic-platform',
+    'morrow-studio',
+  ];
+  const projects = (await getCollection('projects')).sort(
+    (a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id),
+  );
   const perPage = Math.max(1, Math.floor(siteConfig.portfolio.projectsPerPage));
   const totalPages = Math.max(1, Math.ceil(projects.length / perPage));
   const paths = [];

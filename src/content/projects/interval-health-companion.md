@@ -1,9 +1,9 @@
 ---
-title: 'Interval Health Companion'
+title: 'El refugio Atómico'
 summary: 'A private, low-friction recovery companion that turns clinical plans into a manageable rhythm at home.'
 description: 'Interval helps patients follow rehabilitation plans, notice meaningful changes, and share concise progress with clinicians.'
-cover: '../../assets/images/projects/interval-cover.webp'
-coverAlt: 'Interval recovery companion displaying a daily rehabilitation plan'
+cover: '../../assets/images/Proyectos/El refugio Atómico/Portada.jpg'
+coverAlt: 'Portada del proyecto El refugio Atómico'
 images:
   - '../../assets/images/projects/interval-plan.webp'
   - '../../assets/images/projects/interval-checkin.webp'

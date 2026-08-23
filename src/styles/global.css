@@ -157,6 +157,20 @@ button {
   padding: var(--space-3xl) 0;
 }
 
+.page-title {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.page-heading {
+  padding-block: 3rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -3,27 +3,67 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/common/Header.astro';
 import Footer from '@/components/common/Footer.astro';
 import Container from '@/components/ui/Container.astro';
+import Picture from '@/components/ui/Picture.astro';
+import image1 from '@/assets/images/Galería/Cafetal_07AM_1.55.1_1.50.1 (1).jpg';
+import image2 from '@/assets/images/Galería/Cafetal_11AM_1.55.1.jpg';
+import image3 from '@/assets/images/Galería/Cañon_I.Still (1).jpg';
+import image4 from '@/assets/images/Galería/ERA_HoraBruja_V2 (3).jpg';
+import image5 from '@/assets/images/Galería/HighresScreenshot00000 (1).png';
+import image6 from '@/assets/images/Galería/HighresScreenshot00000 (2).png';
+import image7 from '@/assets/images/Galería/image (6).png';
+import image8 from '@/assets/images/Galería/image (7).png';
+import image9 from '@/assets/images/Galería/LS_Filipinas_05_v001_0000 (1).jpeg';
+import image10 from '@/assets/images/Galería/LS_Filipinas_05_v006_0000 (3).jpeg';
+import image11 from '@/assets/images/Galería/LS_Ndisplay1.0000.v004 (1).jpeg';
+import image12 from '@/assets/images/Galería/LS_Ndisplay1.0000.v006 (2).jpeg';
+import image13 from '@/assets/images/Galería/LS_Ndisplay1.0000.v008 (1).jpeg';
+import image14 from '@/assets/images/Galería/PlayaDia_1.91.1 (1).jpg';
+import image15 from '@/assets/images/Galería/Playa_1.45.1 (1).jpg';
+import image16 from '@/assets/images/Galería/Untitled_1.81.1 (1).jpg';
+
+const galleryImages = [
+  { src: image1, title: 'Cafetal 07AM' },
+  { src: image2, title: 'Cafetal 11AM' },
+  { src: image3, title: 'Cañón I' },
+  { src: image4, title: 'Hora Bruja' },
+  { src: image5, title: 'Highres Screenshot 01' },
+  { src: image6, title: 'Highres Screenshot 02' },
+  { src: image7, title: 'Image 06' },
+  { src: image8, title: 'Image 07' },
+  { src: image9, title: 'Filipinas 01' },
+  { src: image10, title: 'Filipinas 06' },
+  { src: image11, title: 'N Display 04' },
+  { src: image12, title: 'N Display 06' },
+  { src: image13, title: 'N Display 08' },
+  { src: image14, title: 'Playa de día' },
+  { src: image15, title: 'Playa' },
+  { src: image16, title: 'Untitled' },
+];
 ---
 
 <BaseLayout title="Galería" description="Galería visual de Xavi Calvo">
   <Header />
 
   <main id="main" tabindex="-1">
-    <section class="gallery-heading">
+    <section class="gallery-heading page-heading">
       <Container size="xl">
-        <p class="gallery-heading__label">Galería</p>
+        <h1 class="page-title">Galería</h1>
       </Container>
     </section>
 
     <section class="gallery-grid" aria-label="Galería de imágenes">
-      <div class="gallery-tile gallery-tile--red"></div>
-      <div class="gallery-tile gallery-tile--blue"></div>
-      <div class="gallery-tile gallery-tile--yellow"></div>
-      <div class="gallery-tile gallery-tile--green"></div>
-      <div class="gallery-tile gallery-tile--pink"></div>
-      <div class="gallery-tile gallery-tile--orange"></div>
-      <div class="gallery-tile gallery-tile--violet"></div>
-      <div class="gallery-tile gallery-tile--teal"></div>
+      {galleryImages.map((image, index) => (
+        <div class:list={['gallery-tile', `gallery-tile--${(index % 8) + 1}`]}>
+          <Picture
+            src={image.src}
+            alt={image.title}
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 900px) 25vw, 50vw"
+            loading={index < 4 ? 'eager' : 'lazy'}
+          />
+          <span class="gallery-tile__title">{image.title}</span>
+        </div>
+      ))}
     </section>
   </main>
 
@@ -31,41 +71,62 @@ import Container from '@/components/ui/Container.astro';
 </BaseLayout>
 
 <style>
-  .gallery-heading { padding-block: clamp(5rem, 11vw, 9rem) var(--space-xl); }
-
-  .gallery-heading__label {
-    margin-bottom: var(--space-lg);
-    color: var(--color-accent);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-  }
-
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(8rem, 16vw);
-    gap: 0.75rem;
+    columns: 2 24rem;
+    column-gap: 0.5rem;
     padding: 0 var(--space-lg) var(--space-3xl);
   }
 
   .gallery-tile {
-    min-height: 8rem;
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
   }
 
-  .gallery-tile--red { background: #d94f45; }
-  .gallery-tile--blue { background: #3d6fd6; grid-row: span 2; }
-  .gallery-tile--yellow { background: #f0c84b; }
-  .gallery-tile--green { background: #4c8b68; grid-column: span 2; }
-  .gallery-tile--pink { background: #d98da9; grid-row: span 2; }
-  .gallery-tile--orange { background: #db7542; }
-  .gallery-tile--violet { background: #7964aa; grid-column: span 2; }
-  .gallery-tile--teal { background: #3b9690; }
+  .gallery-tile :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .gallery-tile::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    pointer-events: none;
+    background: rgba(90, 94, 102, 0.2);
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  .gallery-tile__title {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 1;
+    color: white;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(0.35rem);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  @media (hover: hover) {
+    .gallery-tile:hover::after,
+    .gallery-tile:hover .gallery-tile__title {
+      opacity: 1;
+    }
+
+    .gallery-tile:hover .gallery-tile__title {
+      transform: translateY(0);
+    }
+  }
 
   @media (max-width: 640px) {
     .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 30vw;
+      columns: 2 10rem;
       padding-inline: var(--space-md);
     }
   }

@@ -3,7 +3,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/common/Header.astro';
 import Footer from '@/components/common/Footer.astro';
 import Container from '@/components/ui/Container.astro';
-import siteConfig from '@/site.config';
 ---
 
 <BaseLayout title="Sobre mí" description="Conoce la trayectoria de Xavi Calvo">
@@ -11,10 +10,10 @@ import siteConfig from '@/site.config';
   <main id="main" tabindex="-1">
     <section class="about-page">
       <Container size="md">
-        <div class="about-photo" role="img" aria-label="Fotografía de Xavi Calvo"></div>
-        <div class="about-copy">
-          <p class="about-copy__label">Sobre mí</p>
-          <h1>{siteConfig.name}</h1>
+        <h1 class="page-title page-heading">Sobre mí</h1>
+        <div class="about-content">
+          <div class="about-photo" role="img" aria-label="Fotografía de Xavi Calvo"></div>
+          <div class="about-copy">
           <p>
             Soy diseñador y desarrollador digital. Durante los últimos años he
             trabajado en proyectos donde la estrategia, la identidad y la
@@ -25,6 +24,7 @@ import siteConfig from '@/site.config';
             y una forma de trabajar cercana. Me interesa convertir ideas
             complejas en productos sencillos de entender y agradables de usar.
           </p>
+          </div>
         </div>
       </Container>
     </section>
@@ -33,8 +33,11 @@ import siteConfig from '@/site.config';
 </BaseLayout>
 
 <style>
-  .about-page { padding-block: clamp(5rem, 12vw, 10rem); }
+  .about-page { padding-block: 0 var(--space-3xl); }
   .about-page :global(.container) {
+    display: block;
+  }
+  .about-content {
     display: grid;
     grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1fr);
     gap: clamp(2rem, 8vw, 7rem);
@@ -42,20 +45,13 @@ import siteConfig from '@/site.config';
   }
   .about-photo { aspect-ratio: 4 / 5; background: #536b8f; }
   .about-copy { max-width: 38rem; }
-  .about-copy__label {
-    margin-bottom: var(--space-lg);
-    color: var(--color-accent);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-  }
   .about-copy h1 { margin-bottom: var(--space-xl); }
-  .about-copy p:not(.about-copy__label) {
+  .about-copy p {
     color: var(--color-text-muted);
     font-size: var(--text-lg);
   }
   @media (max-width: 700px) {
-    .about-page :global(.container) { grid-template-columns: 1fr; }
+    .about-content { grid-template-columns: 1fr; }
     .about-photo { max-width: 20rem; }
   }
 </style>

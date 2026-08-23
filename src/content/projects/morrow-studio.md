@@ -1,9 +1,9 @@
 ---
-title: 'Morrow Studio'
+title: 'Mapi'
 summary: 'A focused identity and portfolio for an independent studio making useful objects for everyday rituals.'
 description: 'Morrow Studio combines a quiet catalogue with a tactile editorial voice, making the story behind each object part of the product.'
-cover: '../../assets/images/projects/northstar-cover.webp'
-coverAlt: 'Morrow Studio product catalogue with a structured editorial layout'
+cover: '../../assets/images/Proyectos/Mapi/Portada.jpg'
+coverAlt: 'Portada del proyecto Mapi'
 tech:
   - 'Astro'
   - 'CSS'

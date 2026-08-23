@@ -27,9 +27,9 @@ const {
 const indexOffset = (currentPage - 1) * perPage;
 ---
 
-<section class="work-hero" aria-labelledby="work-title">
+<section class="work-hero page-heading" aria-labelledby="work-title">
   <Container size="xl">
-    <h1 id="work-title">Proyectos</h1>
+    <h1 id="work-title" class="page-title">Proyectos</h1>
   </Container>
 </section>
 
@@ -55,17 +55,13 @@ const indexOffset = (currentPage - 1) * perPage;
                 >
                   <ProjectCard
                     title={project.data.title}
-                    summary={project.data.summary}
                     cover={project.data.cover}
                     coverAlt={project.data.coverAlt}
-                    tech={project.data.tech}
                     role={project.data.role}
                     year={project.data.year}
                     href={withBase(`/work/${project.id}/`)}
                     slug={project.id}
                     index={indexOffset + index + 1}
-                    featured={project.data.featured}
-                    showTechStack={showTechStack}
                     showYear={showYear}
                   />
                 </div>
@@ -89,13 +85,11 @@ const indexOffset = (currentPage - 1) * perPage;
 
 <style>
   .work-hero {
-    padding-block: clamp(5rem, 11vw, 10rem);
+    padding-block: 3rem;
   }
 
   .work-hero :global(.container) {
-    display: grid;
-    grid-template-columns: minmax(5rem, 0.25fr) minmax(0, 1fr);
-    gap: var(--space-xl);
+    display: block;
   }
 
   .work-hero__index {
@@ -122,12 +116,7 @@ const indexOffset = (currentPage - 1) * perPage;
   }
 
   .work-hero h1 {
-    max-width: 14ch;
-    margin-bottom: var(--space-xl);
-    font-size: clamp(3.25rem, 8.5vw, 8rem);
-    font-weight: 750;
-    line-height: 0.88;
-    letter-spacing: -0.065em;
+    white-space: nowrap;
   }
 
   .work-hero h1 em {
@@ -146,6 +135,7 @@ const indexOffset = (currentPage - 1) * perPage;
 
   .project-index {
     padding-bottom: var(--space-3xl);
+    padding-top: 0;
   }
 
   .project-index__bar {
@@ -211,7 +201,7 @@ const indexOffset = (currentPage - 1) * perPage;
   .project-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-xl);
+    gap: var(--space-lg);
   }
 
   /* Collapse only when the content container becomes narrow. */
@@ -239,10 +229,6 @@ const indexOffset = (currentPage - 1) * perPage;
       display: block;
     }
 
-    .work-hero__index {
-      margin-bottom: var(--space-xl);
-    }
-
     .work-hero__intro {
       margin-left: 0;
     }
@@ -255,5 +241,9 @@ const indexOffset = (currentPage - 1) * perPage;
       justify-content: flex-start;
       margin-top: var(--space-xl);
     }
+  }
+
+  @media (max-width: 640px) {
+    .work-hero h1 { font-size: var(--text-sm); }
   }
 </style>

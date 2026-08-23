@@ -10,8 +10,7 @@ import Container from '@/components/ui/Container.astro';
   <main id="main" tabindex="-1">
     <section class="contact-page">
       <Container size="md">
-        <p class="contact-page__label">Contacto</p>
-        <h1>Hablemos de tu próximo proyecto.</h1>
+        <h1 class="page-title page-heading">Contacto</h1>
         <form class="contact-form" action="mailto:hola@xavicalvo.com" method="post" enctype="text/plain">
           <label for="name">Nombre</label>
           <input id="name" name="name" type="text" autocomplete="name" required />
@@ -28,16 +27,9 @@ import Container from '@/components/ui/Container.astro';
 </BaseLayout>
 
 <style>
-  .contact-page { padding-block: clamp(5rem, 12vw, 10rem); }
+  .contact-page { padding-block: 0 var(--space-3xl); }
   .contact-page :global(.container) { max-width: 48rem; }
-  .contact-page__label {
-    margin-bottom: var(--space-lg);
-    color: var(--color-accent);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-  }
-  .contact-page h1 { max-width: 13ch; margin-bottom: var(--space-3xl); }
+  .contact-page h1 { margin-bottom: var(--space-3xl); }
   .contact-form { display: grid; gap: var(--space-sm); }
   .contact-form label { margin-top: var(--space-md); font-weight: 600; }
   .contact-form input,

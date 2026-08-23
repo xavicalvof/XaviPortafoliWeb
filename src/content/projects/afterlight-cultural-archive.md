@@ -1,9 +1,9 @@
 ---
-title: 'Afterlight Cultural Archive'
+title: 'Berlín S1'
 summary: 'An atmospheric digital archive where oral histories, objects, and places can be explored without losing their relationships.'
 description: 'Afterlight pairs a flexible editorial system with a spatial browsing model for a community-held cultural collection.'
-cover: '../../assets/images/projects/afterlight-cover.webp'
-coverAlt: 'Afterlight archive showing an oral history beside collection photography'
+cover: '../../assets/images/Proyectos/Berlín S1/Portada.webp'
+coverAlt: 'Portada del proyecto Berlín S1'
 images:
   - src: '../../assets/images/projects/afterlight-story.webp'
     alt: 'Curated story view pairing an oral history transcript with archival photographs'

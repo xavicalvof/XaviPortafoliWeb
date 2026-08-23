@@ -1,9 +1,9 @@
 ---
-title: 'Fieldnote Research Library'
+title: 'Berlín S2'
 summary: 'A living research archive that makes years of interviews, observations, and decisions searchable across product teams.'
 description: 'Fieldnote connects raw evidence to product decisions without flattening qualitative research into a dashboard.'
-cover: '../../assets/images/projects/fieldnote-cover.webp'
-coverAlt: 'Fieldnote research library interface with highlighted observations'
+cover: '../../assets/images/Proyectos/Berlín S2/berlin-2-nou-2.jpg'
+coverAlt: 'Portada del proyecto Berlín S2'
 images:
   - '../../assets/images/projects/fieldnote-library.webp'
   - '../../assets/images/projects/fieldnote-evidence.webp'
