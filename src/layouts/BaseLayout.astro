@@ -1,10 +1,9 @@
 ---
 import '@/styles/global.css';
-import siteConfig from '@/site.config';
 import { withBase } from '@/lib/url';
 import { ClientRouter } from 'astro:transitions';
 import Seo from '@/components/common/Seo.astro';
-import ThemeToggle from '@/components/common/ThemeToggle.astro';
+import { getLanguage } from '@/lib/i18n';
 
 export interface Props {
   title?: string;
@@ -22,10 +21,11 @@ export interface Props {
 }
 
 const props = Astro.props;
+const documentLanguage = getLanguage(Astro.url.searchParams.get('lang'));
 ---
 
 <!doctype html>
-<html lang={siteConfig.lang}>
+<html lang={documentLanguage} data-theme="dark" data-theme-mode="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,33 +65,15 @@ const props = Astro.props;
       article={props.article}
     />
 
-    <!-- Theme Script (FOUC Prevention) -->
-    <!--
-      Sets two attributes on <html> before first paint:
-        data-theme       — the *resolved* appearance ('light' | 'dark'), drives the tokens
-        data-theme-mode  — the *selected* preference ('system' | 'light' | 'dark'), drives the toggle icon
-      localStorage is wrapped so a throw (Safari "block all cookies", private mode,
-      sandboxed iframe) can't abort the script and leave the page unthemed.
-    -->
+    <!-- Fixed dark theme before first paint. -->
     <script
       is:inline
       set:html={`(function(){
         var d = document.documentElement;
-        function safeGet(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
-        var stored = safeGet('theme');
-        var fallback = ${JSON.stringify(siteConfig.theme.defaultColorMode)};
-        var mode = (stored === 'light' || stored === 'dark' || stored === 'system') ? stored : fallback;
-        if (mode !== 'light' && mode !== 'dark' && mode !== 'system') mode = 'system';
-        var resolved = mode;
-        if (mode === 'system') {
-          var prefersDark = false;
-          try { prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) {}
-          resolved = prefersDark ? 'dark' : 'light';
-        }
-        d.setAttribute('data-theme', resolved);
-        d.setAttribute('data-theme-mode', mode);
+        d.setAttribute('data-theme', 'dark');
+        d.setAttribute('data-theme-mode', 'dark');
         var meta = document.getElementById('theme-color-meta');
-        if (meta) meta.setAttribute('content', resolved === 'dark' ? '#0b0f19' : '#f5f6f9');
+        if (meta) meta.setAttribute('content', '#0b0f19');
       })();`}
     />
 
@@ -104,15 +86,6 @@ const props = Astro.props;
 
     <!-- Main Layout -->
     <slot />
-
-    <!-- Theme Toggle (can be positioned by parent) -->
-    {
-      siteConfig.theme.showThemeToggle && (
-        <div id="theme-toggle-container">
-          <ThemeToggle />
-        </div>
-      )
-    }
 
   </body>
 </html>

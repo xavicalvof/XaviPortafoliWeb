@@ -91,8 +91,8 @@ const siteConfig: SiteConfig = {
 
   theme: {
     accentColor: 'hsl(280, 70%, 60%)',
-    defaultColorMode: 'system',
-    showThemeToggle: true,
+    defaultColorMode: 'dark',
+    showThemeToggle: false,
   },
 
   nav: {

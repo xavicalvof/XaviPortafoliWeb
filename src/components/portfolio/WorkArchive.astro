@@ -4,6 +4,7 @@ import Container from '@/components/ui/Container.astro';
 import Pagination from '@/components/blog/Pagination.astro';
 import { withBase } from '@/lib/url';
 import ProjectCard from './ProjectCard.astro';
+import { getLanguage, getTranslations } from '@/lib/i18n';
 
 export interface Props {
   projects: CollectionEntry<'projects'>[];
@@ -25,11 +26,12 @@ const {
 } = Astro.props;
 
 const indexOffset = (currentPage - 1) * perPage;
+const translations = getTranslations(getLanguage(Astro.url.searchParams.get('lang')));
 ---
 
 <section class="work-hero page-heading" aria-labelledby="work-title">
   <Container size="xl">
-    <h1 id="work-title" class="page-title">Proyectos</h1>
+    <h1 id="work-title" class="page-title" data-i18n="projects">{translations.projects}</h1>
   </Container>
 </section>
 

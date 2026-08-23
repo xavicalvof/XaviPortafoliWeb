@@ -3,6 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/common/Header.astro';
 import Footer from '@/components/common/Footer.astro';
 import Container from '@/components/ui/Container.astro';
+import { getLanguage, getTranslations } from '@/lib/i18n';
+const translations = getTranslations(getLanguage(Astro.url.searchParams.get('lang')));
 ---
 
 <BaseLayout title="Sobre mí" description="Conoce la trayectoria de Xavi Calvo">
@@ -10,19 +12,15 @@ import Container from '@/components/ui/Container.astro';
   <main id="main" tabindex="-1">
     <section class="about-page">
       <Container size="md">
-        <h1 class="page-title page-heading">Sobre mí</h1>
+        <h1 class="page-title page-heading" data-i18n="about">{translations.about}</h1>
         <div class="about-content">
           <div class="about-photo" role="img" aria-label="Fotografía de Xavi Calvo"></div>
           <div class="about-copy">
           <p>
-            Soy diseñador y desarrollador digital. Durante los últimos años he
-            trabajado en proyectos donde la estrategia, la identidad y la
-            tecnología se encuentran para crear experiencias claras y útiles.
+            {translations.aboutText1}
           </p>
           <p>
-            Mi trayectoria combina curiosidad visual, atención por los detalles
-            y una forma de trabajar cercana. Me interesa convertir ideas
-            complejas en productos sencillos de entender y agradables de usar.
+            {translations.aboutText2}
           </p>
           </div>
         </div>
