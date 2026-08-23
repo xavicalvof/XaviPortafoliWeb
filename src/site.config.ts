@@ -79,15 +79,15 @@ const SITE_URL =
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xavi-portafoli-web-git-main-xavi16.vercel.app');
 
 const siteConfig: SiteConfig = {
-  name: 'Astro Haze',
-  title: 'Astro Haze - Glassmorphism Theme',
-  description: 'A beautiful glassmorphism multi-purpose theme for Astro 7',
-  author: 'Your Name',
+  name: 'Xavi Calvo',
+  title: 'Xavi Calvo | Portfolio',
+  description: 'Portfolio personal de Xavi Calvo',
+  author: 'Xavi Calvo',
   url: SITE_URL,
   ogImage: '/og-image.png',
-  twitterHandle: '@yourusername',
-  lang: 'en',
-  ogLocale: 'en_US',
+  twitterHandle: '@xavic',
+  lang: 'es',
+  ogLocale: 'es_ES',
 
   theme: {
     accentColor: 'hsl(280, 70%, 60%)',
@@ -97,11 +97,12 @@ const siteConfig: SiteConfig = {
 
   nav: {
     main: [
-      { name: 'Home', href: '/' },
-      { name: 'Blog', href: '/blog/' },
-      { name: 'Portfolio', href: '/work/' },
-      { name: 'Landing', href: '/landing/' },
-      { name: 'About', href: '/about/' },
+      { name: 'Inicio', href: '/' },
+      { name: 'Proyectos', href: '/work/' },
+      { name: 'Servicios', href: '/landing/' },
+      { name: 'Galería', href: '/gallery/' },
+      { name: 'Sobre mí', href: '/about/' },
+      { name: 'Contacto', href: '/contact/' },
     ],
   },
 
@@ -115,9 +116,9 @@ const siteConfig: SiteConfig = {
   },
 
   social: {
-    github: 'https://github.com/yourusername',
-    twitter: 'https://twitter.com/yourusername',
-    linkedin: 'https://linkedin.com/in/yourusername',
+    github: 'https://github.com/xavi16',
+    twitter: 'https://twitter.com/xavic',
+    linkedin: 'https://linkedin.com/in/xavic',
   },
 
   blog: {

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/common/Header.astro';
+import Footer from '@/components/common/Footer.astro';
+import Container from '@/components/ui/Container.astro';
+---
+
+<BaseLayout title="Contacto" description="Contacta con Xavi Calvo">
+  <Header />
+  <main id="main" tabindex="-1">
+    <section class="contact-page">
+      <Container size="md">
+        <p class="contact-page__label">Contacto</p>
+        <h1>Hablemos de tu próximo proyecto.</h1>
+        <form class="contact-form" action="mailto:hola@xavicalvo.com" method="post" enctype="text/plain">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="7" required></textarea>
+          <button type="submit">Enviar mensaje <span aria-hidden="true">↗</span></button>
+        </form>
+      </Container>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .contact-page { padding-block: clamp(5rem, 12vw, 10rem); }
+  .contact-page :global(.container) { max-width: 48rem; }
+  .contact-page__label {
+    margin-bottom: var(--space-lg);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+  }
+  .contact-page h1 { max-width: 13ch; margin-bottom: var(--space-3xl); }
+  .contact-form { display: grid; gap: var(--space-sm); }
+  .contact-form label { margin-top: var(--space-md); font-weight: 600; }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+  }
+  .contact-form textarea { resize: vertical; }
+  .contact-form button {
+    justify-self: start;
+    margin-top: var(--space-lg);
+    padding: var(--space-md) var(--space-xl);
+    color: var(--color-text-inverse);
+    background: var(--color-accent);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+  }
+</style>
