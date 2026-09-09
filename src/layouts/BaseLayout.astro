@@ -1,9 +1,10 @@
 ---
 import '@/styles/global.css';
+import '@/styles/brand.css';
 import { withBase } from '@/lib/url';
 import { ClientRouter } from 'astro:transitions';
 import Seo from '@/components/common/Seo.astro';
-import { getLanguage } from '@/lib/i18n';
+import { pageLanguage, plainPath, localLink, copy } from '@/lib/portfolio';
 
 export interface Props {
   title?: string;
@@ -21,7 +22,7 @@ export interface Props {
 }
 
 const props = Astro.props;
-const documentLanguage = getLanguage(Astro.url.searchParams.get('lang'));
+const documentLanguage = pageLanguage(Astro.url);
 ---
 
 <!doctype html>
@@ -54,7 +55,33 @@ const documentLanguage = getLanguage(Astro.url.searchParams.get('lang'));
     />
     <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     <link rel="manifest" href={withBase('/manifest.webmanifest')} />
-    <meta id="theme-color-meta" name="theme-color" content="#0b0f19" />
+    <meta id="theme-color-meta" name="theme-color" content="#08090B" />
+    {
+      (['es', 'en', 'ca'] as const).map((language) => (
+        <link
+          rel="alternate"
+          hreflang={language}
+          href={
+            new URL(
+              localLink(plainPath(Astro.url.pathname), language),
+              Astro.site,
+            )
+          }
+        />
+      ))
+    }
+    <script is:inline>
+      // Compatibility with the original query-string language links.
+      const legacyURL = new URL(location.href);
+      const legacyLanguage = legacyURL.searchParams.get('lang');
+      if (legacyLanguage && ['es', 'ca', 'en'].includes(legacyLanguage)) {
+        legacyURL.pathname =
+          (legacyLanguage === 'es' ? '' : '/' + legacyLanguage) +
+          legacyURL.pathname.replace(/^\/(ca|en)(?=\/)/, '');
+        legacyURL.searchParams.delete('lang');
+        location.replace(legacyURL.href);
+      }
+    </script>
 
     <!-- SEO: title, description, canonical, Open Graph, Twitter, JSON-LD -->
     <Seo
@@ -73,7 +100,7 @@ const documentLanguage = getLanguage(Astro.url.searchParams.get('lang'));
         d.setAttribute('data-theme', 'dark');
         d.setAttribute('data-theme-mode', 'dark');
         var meta = document.getElementById('theme-color-meta');
-        if (meta) meta.setAttribute('content', '#0b0f19');
+        if (meta) meta.setAttribute('content', '#08090B');
       })();`}
     />
 
@@ -82,11 +109,12 @@ const documentLanguage = getLanguage(Astro.url.searchParams.get('lang'));
   </head>
   <body>
     <!-- Skip to content link -->
-    <a href="#main" class="skip-link" data-pagefind-ignore>Skip to content</a>
+    <a href="#main" class="skip-link" data-pagefind-ignore
+      >{copy[documentLanguage].skip}</a
+    >
 
     <!-- Main Layout -->
     <slot />
-
   </body>
 </html>
 

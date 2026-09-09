@@ -1,0 +1,81 @@
+---
+import type { Language } from '@/lib/i18n';
+import { getTranslations } from '@/lib/i18n';
+import { copy, profile } from '@/lib/portfolio';
+export interface Props {
+  language: Language;
+}
+const { language } = Astro.props;
+const t = getTranslations(language);
+---
+
+<form
+  class="contact-form"
+  action={`mailto:${profile.email}`}
+  method="post"
+  enctype="text/plain"
+  data-contact-form
+  data-email={profile.email}
+>
+  <div class="contact-honey" aria-hidden="true">
+    <label for="website">Website</label><input
+      id="website"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+  <label for="name"
+    >{t.name}<input
+      id="name"
+      name="name"
+      autocomplete="name"
+      required
+      maxlength="150"
+    /></label
+  >
+  <label for="email"
+    >{
+      language === 'ca'
+        ? 'Correu electrònic'
+        : language === 'es'
+          ? 'Correo electrónico'
+          : 'Email'
+    }<input
+      id="email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+    /></label
+  >
+  <label for="message"
+    >{t.message}<textarea
+      id="message"
+      name="message"
+      rows="6"
+      required
+      maxlength="10000"></textarea></label
+  >
+  <button type="submit" aria-describedby="mail-note">{t.send} ↗</button><p
+    id="mail-note"
+  >
+    {copy[language].mailNote}
+  </p>
+</form>
+<script>
+  import { onPage } from '@/lib/lifecycle';
+  onPage(() => {
+    const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      if (String(data.get('website') ?? '').trim()) return;
+      const name = String(data.get('name') ?? '').trim();
+      const email = String(data.get('email') ?? '').trim();
+      const message = String(data.get('message') ?? '').trim();
+      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(`Portfolio: ${name}`)}&body=${encodeURIComponent(`${name}\n${email}\n\n${message}`)}`;
+    });
+  });
+</script>

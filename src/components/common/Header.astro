@@ -1,410 +1,237 @@
 ---
-import siteConfig from '@/site.config';
-import { withBase } from '@/lib/url';
-import { getEnabledNavItems } from '@/lib/nav';
-import { getLanguage, getTranslations } from '@/lib/i18n';
-
+import Brand from './Brand.astro';
+import { getTranslations } from '@/lib/i18n';
+import { pageLanguage, localLink, plainPath, copy } from '@/lib/portfolio';
 export interface Props {
   overlay?: boolean;
 }
-
 const { overlay = false } = Astro.props;
-
-const currentPath = Astro.url.pathname;
-
-// A nav item is active when the path matches exactly or sits under it
-// (e.g. /blog stays active on /blog/page/2 and /blog/my-post). "/" only
-// matches the home page itself. currentPath includes the base, so compare
-// against the base-prefixed href.
-function isActive(href: string): boolean {
-  const target = withBase(href);
-  const home = withBase('/');
-  if (href === '/') return currentPath === home;
-  // href may itself end in '/' (trailing-slash routes); normalize before
-  // appending the separator so the prefix check doesn't require '//'.
-  const targetBase = target.endsWith('/') ? target.slice(0, -1) : target;
-  return currentPath === target || currentPath.startsWith(targetBase + '/');
-}
-
-const navItems = getEnabledNavItems();
-const activeLanguage = getLanguage(Astro.url.searchParams.get('lang'));
-const translations = getTranslations(activeLanguage);
+const language = pageLanguage(Astro.url);
+const nav = getTranslations(language).nav;
+const path = plainPath(Astro.url.pathname);
+const active = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
 ---
 
-<!-- data-pagefind-ignore keeps site chrome out of the search index -->
-<header class:list={['site-header', { 'site-header--overlay': overlay }]} data-pagefind-ignore>
-  <div class="container header-container">
-    <!-- Logo/Brand -->
-    <a href={withBase('/')} class="brand" aria-label="Home">
-      <span class="brand-text">{siteConfig.name}</span>
-    </a>
-
-    <!-- Mobile Menu Toggle -->
+<header
+  class:list={['site-header', { 'site-header--overlay': overlay }]}
+  data-pagefind-ignore
+>
+  <div class="header-container">
+    <a
+      href={localLink('/', language)}
+      class="brand"
+      aria-label={`Xavi Calvo — ${nav['/']}`}><Brand /></a
+    >
     <button
       class="menu-toggle"
-      id="menu-toggle"
-      aria-label="Toggle navigation menu"
       aria-expanded="false"
       aria-controls="navigation"
+      aria-label={copy[language].menu}
+      ><span></span><span></span><span></span></button
     >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <!-- Navigation -->
-    <nav id="navigation" class="nav-menu" aria-label="Main navigation">
+    <nav id="navigation" aria-label={copy[language].menu}>
       <ul class="nav-list">
         {
-          navItems.map((item) => (
-            <li class="nav-item">
+          Object.entries(nav).map(([href, label]) => (
+            <li>
               <a
-                href={item.href.startsWith('/') && activeLanguage !== 'es'
-                  ? `${withBase(item.href)}?lang=${activeLanguage}`
-                  : withBase(item.href)}
-                class={`nav-link ${isActive(item.href) ? 'active' : ''}`}
-                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={['nav-link', { active: active(href) }]}
+                aria-current={active(href) ? 'page' : undefined}
+                href={localLink(href, language)}
               >
-                <span data-nav-path={item.href}>{translations.nav[item.href as keyof typeof translations.nav] ?? item.name}</span>
+                {label}
               </a>
             </li>
           ))
         }
       </ul>
+      <div class="mobile-languages">
+        {
+          (['es', 'en', 'ca'] as const).map((lang) => (
+            <a
+              href={localLink(path, lang)}
+              lang={lang}
+              aria-current={lang === language ? 'true' : undefined}
+            >
+              {lang.toUpperCase()}
+            </a>
+          ))
+        }
+      </div>
     </nav>
-
-    <nav class="language-picker" aria-label="Seleccionar idioma">
-      {(['es', 'en', 'ca'] as const)
-        .filter((language) => language !== activeLanguage)
-        .map((language) => (
+    <nav class="language-picker" aria-label="Language">
+      {
+        (['es', 'en', 'ca'] as const).map((lang) => (
           <a
-            class="language-link nav-link"
-            href={`?lang=${language}`}
-            lang={language}
-            data-language={language}
+            href={localLink(path, lang)}
+            lang={lang}
+            aria-current={lang === language ? 'true' : undefined}
           >
-            {language.toUpperCase()}
+            {lang.toUpperCase()}
           </a>
-        ))}
+        ))
+      }
     </nav>
-
   </div>
 </header>
-
 <style>
   .site-header {
-    position: sticky;
-    top: 0;
-    z-index: var(--z-sticky);
-    padding: var(--space-md) 0;
-    background: transparent;
-    isolation: isolate;
+    position: relative;
+    z-index: 30;
+    background: var(--color-bg);
   }
-
-  .site-header::before {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 9rem;
-    content: '';
-    pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      rgba(8, 10, 16, 0.92) 0%,
-      rgba(8, 10, 16, 0.7) 42%,
-      rgba(8, 10, 16, 0) 100%
-    );
-  }
-
   .site-header--overlay {
     position: absolute;
-    width: 100%;
-    color: white;
+    inset: 0 0 auto;
+    background: linear-gradient(#08090bdd, transparent);
   }
-
   .header-container {
-    display: flex;
+    min-height: 108px;
+    padding: 16px 4vw;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-xl);
+    gap: 24px;
   }
-
-  /* Brand/Logo */
   .brand {
-    font-size: var(--text-xl);
-    font-weight: 700;
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-    position: relative;
+    justify-self: start;
+    display: block;
   }
-
-  .brand:hover {
-    color: var(--color-accent);
-  }
-
-  .brand-text {
-    background: linear-gradient(
-      135deg,
-      var(--color-accent),
-      var(--color-accent-light)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-    .brand-text {
-      /* No explicit color: inherit .brand's color so :hover still applies. */
-      background: none;
-      -webkit-text-fill-color: currentColor;
-    }
-  }
-
-  /* Navigation */
-  .nav-menu {
-    position: absolute;
-    left: 50%;
-    display: flex;
-    transform: translateX(-50%);
-  }
-
   .nav-list {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: clamp(18px, 2.3vw, 38px);
     list-style: none;
+    margin: 0;
     padding: 0;
+  }
+  li {
     margin: 0;
   }
-
-  .nav-item {
-    margin: 0;
+  a {
+    color: var(--color-text);
   }
-
   .nav-link {
     display: inline-flex;
     align-items: center;
-    padding: var(--space-sm) 0;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: var(--radius-md);
-    transition:
-      color var(--transition-fast),
-      background-color var(--transition-fast);
+    min-height: 44px;
     position: relative;
+    font-size: 13px;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
-
-  .site-header--overlay .brand,
-  .site-header--overlay .language-picker {
-    color: var(--color-text-muted);
+  a:hover,
+  a[aria-current] {
+    color: var(--brand-lime);
+    text-decoration: none;
   }
-
-  .language-picker {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-  }
-
-  .language-link {
-    font-size: var(--text-xs);
-    font-weight: 500;
-  }
-
-  @media (hover: hover) {
-    .nav-link:hover {
-      color: var(--color-text);
-      background: var(--glass-bg);
-    }
-  }
-
-  .nav-link.active {
-    color: var(--color-accent);
-    background: var(--color-accent-glass);
-  }
-
   .nav-link.active::after {
     content: '';
+    height: 2px;
+    width: 28px;
+    background: var(--brand-magenta);
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 24px;
-    height: 2px;
-    background: var(--color-accent);
-    border-radius: var(--radius-full);
   }
-
-  /* Mobile styles */
-  @media (max-width: 768px) {
-    .nav-menu {
-      position: fixed;
-      top: var(--header-height);
-      left: 0;
-      right: 0;
-      background: var(--glass-bg-solid);
-      border-bottom: 1px solid var(--glass-border);
-      padding: var(--space-lg);
-      transform: translateY(-100%);
-      opacity: 0;
-      transition:
-        transform var(--transition-base),
-        opacity var(--transition-base),
-        visibility var(--transition-base);
-      pointer-events: none;
-      /* Remove the off-screen menu from the visual flow; the script also sets
-         `inert` so its links leave the tab order and a11y tree. */
-      visibility: hidden;
+  .language-picker {
+    justify-self: end;
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .language-picker a,
+  .mobile-languages a {
+    display: grid;
+    place-items: center;
+    min-width: 30px;
+    min-height: 44px;
+  }
+  .menu-toggle,
+  .mobile-languages {
+    display: none;
+  }
+  @media (max-width: 1100px) {
+    .header-container {
+      min-height: 88px;
+      grid-template-columns: 1fr auto;
     }
-
-    .nav-menu.active {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-      visibility: visible;
+    .menu-toggle {
+      display: flex;
+      width: 48px;
+      height: 48px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--glass-border);
     }
-
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--color-text);
+    }
+    #navigation {
+      display: none;
+      grid-column: 1 / -1;
+      padding-bottom: 20px;
+    }
+    .site-header:has([aria-expanded='true']) {
+      background: var(--color-bg);
+    }
+    #navigation.open {
+      display: block;
+    }
     .nav-list {
       flex-direction: column;
-      align-items: stretch;
-      gap: var(--space-sm);
+      gap: 8px;
     }
-
-    .nav-link {
-      width: 100%;
-      min-height: 44px;
-      justify-content: center;
-    }
-
-    .nav-link.active::after {
+    .language-picker {
       display: none;
     }
-
-    .language-picker { display: none; }
-
-    .menu-toggle {
-      margin-left: auto;
+    .mobile-languages {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
     }
-  }
-
-  /* Fallback for browsers without backdrop-filter: the mobile menu needs an
-     opaque background so it stays readable instead of see-through. */
-  @supports not (backdrop-filter: blur(1px)) {
-    @media (max-width: 768px) {
-      .nav-menu {
-        background: var(--color-bg);
-      }
-    }
-  }
-
-  /* Focus styles */
-  .nav-link:focus-visible,
-  .brand:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
   }
 </style>
-
 <script>
-  import { lockScroll, unlockScroll } from '@/lib/scrollLock';
-  import { onPage, onLeave } from '@/lib/lifecycle';
-  import { getLanguage, getTranslations } from '@/lib/i18n';
-
-  // Re-queried on every navigation; the old elements go away with the swap.
-  let toggle: HTMLElement | null = null;
-  let nav: HTMLElement | null = null;
-  const mobile = window.matchMedia('(max-width: 768px)');
-
-  // The menu collapses behind a hamburger only at ≤768px. When it's collapsed
-  // and closed, its links must leave the tab order and accessibility tree —
-  // CSS `visibility` alone doesn't do that reliably, so we toggle `inert` and
-  // `aria-hidden`. On desktop the menu is always visible, so it's never inert.
-  function syncNavState() {
-    if (!nav) return;
-    const hidden = mobile.matches && !nav.classList.contains('active');
-    nav.toggleAttribute('inert', hidden);
-    nav.setAttribute('aria-hidden', String(hidden));
-  }
-
-  function openMenu() {
-    if (nav?.classList.contains('active')) return;
-    nav?.classList.add('active');
-    toggle?.classList.add('active');
-    toggle?.setAttribute('aria-expanded', 'true');
-    lockScroll();
-    syncNavState();
-  }
-
-  function closeMenu() {
-    if (!nav?.classList.contains('active')) return;
-    nav?.classList.remove('active');
-    toggle?.classList.remove('active');
-    toggle?.setAttribute('aria-expanded', 'false');
-    unlockScroll();
-    syncNavState();
-  }
-
+  import { onPage } from '@/lib/lifecycle';
   onPage(() => {
-    toggle = document.getElementById('menu-toggle');
-    nav = document.getElementById('navigation');
-
+    const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+    const nav = document.getElementById('navigation');
+    const close = () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      nav?.classList.remove('open');
+    };
     toggle?.addEventListener('click', () => {
-      if (nav?.classList.contains('active')) {
-        closeMenu();
-      } else {
-        openMenu();
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav?.classList.toggle('open', open);
+    });
+    nav?.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        close();
+        toggle?.focus();
       }
     });
-
-    syncNavState();
-
-    applyLanguage(getLanguage(new URLSearchParams(window.location.search).get('lang')));
-  });
-
-  function applyLanguage(language: ReturnType<typeof getLanguage>) {
-    const current = getTranslations(language);
-    document.documentElement.lang = language;
-    document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((element) => {
-      const key = element.dataset.i18n as keyof typeof current | undefined;
-      if (key && typeof current[key] === 'string') element.textContent = current[key];
+    toggle?.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') close();
     });
-    document.querySelectorAll<HTMLElement>('[data-nav-path]').forEach((element) => {
-      const path = element.dataset.navPath as keyof typeof current.nav | undefined;
-      if (path && current.nav[path]) element.textContent = current.nav[path];
+    nav?.addEventListener('focusout', () => {
+      requestAnimationFrame(() => {
+        if (
+          !nav.contains(document.activeElement) &&
+          document.activeElement !== toggle
+        )
+          close();
+      });
     });
-  }
-
-  // The scroll lock lives on <html>, which survives the swap: leaving the menu
-  // open through a navigation would lock scrolling on the page you land on.
-  onLeave(closeMenu);
-
-  // Listeners below are on objects that outlive the swap, so they are
-  // registered once and read whichever elements are current.
-
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (!toggle?.contains(target) && !nav?.contains(target)) {
-      closeMenu();
-    }
-  });
-
-  // Close menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav?.classList.contains('active')) {
-      closeMenu();
-      toggle?.focus();
-    }
-  });
-
-  // Keep inert/aria-hidden correct across viewport changes.
-  mobile.addEventListener('change', () => {
-    closeMenu();
-    syncNavState();
   });
 </script>

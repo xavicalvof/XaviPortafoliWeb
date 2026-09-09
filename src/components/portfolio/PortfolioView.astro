@@ -1,0 +1,290 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/common/Header.astro';
+import Footer from '@/components/common/Footer.astro';
+import Picture from '@/components/ui/Picture.astro';
+import GalleryView from './GalleryView.astro';
+import ContactForm from './ContactForm.astro';
+import { getTranslations } from '@/lib/i18n';
+import {
+  copy,
+  home,
+  profile,
+  pageLanguage,
+  localLink,
+  projectOrder,
+  projectEditorial,
+  serviceImages,
+} from '@/lib/portfolio';
+export interface Props {
+  page:
+    'home' | 'work' | 'detail' | 'services' | 'gallery' | 'about' | 'contact';
+  slug?: string;
+}
+const { page, slug } = Astro.props;
+const language = pageLanguage(Astro.url);
+const t = copy[language];
+const nav = getTranslations(language);
+const link = (path: string) => localLink(path, language);
+const projects = (await getCollection('projects')).sort(
+  (a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id),
+);
+const project = projects.find((p) => p.id === slug);
+const editorial = projectEditorial[slug ?? ''] ?? {};
+const nextProject =
+  projects[(projects.findIndex((p) => p.id === slug) + 1) % projects.length];
+const title =
+  page === 'home'
+    ? home.title
+    : page === 'detail'
+      ? project?.data.title
+      : page === 'services'
+        ? t.services
+        : page === 'work'
+          ? nav.projects
+          : nav[page];
+---
+
+<BaseLayout
+  title={title}
+  description={page === 'home' ? t.hero : `${title} — Xavi Calvo`}
+  ogImage={page === 'detail' ? project?.data.cover.src : home.image.src}
+>
+  <Header overlay={page === 'home'} />
+  <main id="main" tabindex="-1">
+    {
+      page === 'home' && (
+        <section
+          class="home-hero"
+          style={`--hero-position: ${home.focalPoint}`}
+        >
+          <Picture
+            src={home.image}
+            alt=""
+            widths={[768, 1200, 1920]}
+            sizes="100vw"
+            loading="eager"
+            fetchpriority="high"
+            class="hero-image"
+          />
+          <div class="hero-copy">
+            <>
+              <h1>{home.title}</h1>
+              <p>{t.hero}</p>
+              <span>{t.engine}</span>
+              <a class="line-link" href={link('/work/')}>
+                {t.work} ↗
+              </a>
+            </>
+          </div>
+          <span class="hero-credit">Xavi Calvo / CGI</span>
+        </section>
+      )
+    }
+    {
+      page === 'work' && (
+        <section class="portfolio-container page-section">
+          <>
+            <h1 class="page-title">{nav.projects}</h1>
+            <div class="work-grid">
+              {projects.map((p, index) => (
+                <a class="work-card" href={link(`/work/${p.id}/`)}>
+                  <Picture
+                    src={p.data.cover}
+                    alt={p.data.title}
+                    widths={[400, 800, 1200]}
+                    sizes="(min-width: 1000px) 30vw, (min-width: 650px) 46vw, 92vw"
+                    loading={index < 3 ? 'eager' : 'lazy'}
+                  />
+                  <div>
+                    <h2>{p.data.title}</h2>
+                    <span aria-hidden="true">↗</span>
+                  </div>
+                  {projectEditorial[p.id]?.role && (
+                    <p>{projectEditorial[p.id].role}</p>
+                  )}
+                </a>
+              ))}
+            </div>
+          </>
+        </section>
+      )
+    }
+    {
+      page === 'detail' && project && (
+        <article class="portfolio-container page-section project-detail">
+          <>
+            <a class="back-link" href={link('/work/')}>
+              ← {t.back}
+            </a>
+            <h1 class="page-title">{project.data.title}</h1>
+          </>
+          <Picture
+            src={project.data.cover}
+            alt={project.data.title}
+            widths={[600, 1200, 1920]}
+            sizes="92vw"
+            loading="eager"
+            fetchpriority="high"
+            class="detail-cover"
+          />
+          <div class="detail-context">
+            <div>
+              <h2>{t.contribution}</h2>
+              {editorial.contribution?.[language] && (
+                <p>{editorial.contribution[language]}</p>
+              )}
+            </div>
+            {(editorial.year ||
+              editorial.role ||
+              editorial.tools?.length ||
+              editorial.client) && (
+              <dl>
+                {[
+                  [t.year, editorial.year],
+                  [t.role, editorial.role],
+                  [t.tools, editorial.tools?.join(' · ')],
+                  [t.client, editorial.client],
+                ].map(
+                  ([label, value]) =>
+                    value && (
+                      <div>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </div>
+                    ),
+                )}
+              </dl>
+            )}
+          </div>
+          {editorial.images?.length && (
+            <section>
+              <h2>{t.process}</h2>
+              <div class="detail-images">
+                {editorial.images.map((img) => (
+                  <figure>
+                    <Picture
+                      src={img.src}
+                      alt={img.alt}
+                      sizes="(min-width: 700px) 45vw, 92vw"
+                    />
+                    {img.caption && <figcaption>{img.caption}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
+          <nav class="detail-navigation" aria-label={nav.projects}>
+            <a href={link('/work/')}>← {t.back}</a>
+            {nextProject && (
+              <a href={link(`/work/${nextProject.id}/`)}>{t.next} →</a>
+            )}
+          </nav>
+        </article>
+      )
+    }
+    {
+      page === 'services' && (
+        <section class="portfolio-container page-section">
+          <>
+            <h1 class="page-title">{t.services}</h1>
+            <div class="services-grid">
+              {t.servicesList.map(([name, description], index) => (
+                <article class="service-card">
+                  {serviceImages[index] ? (
+                    <Picture
+                      src={serviceImages[index]!}
+                      alt={name}
+                      sizes="(min-width: 1000px) 30vw, 92vw"
+                    />
+                  ) : (
+                    <div class="service-placeholder">
+                      <span aria-hidden="true">0{index + 1}</span>
+                      <small>{t.imagePending}</small>
+                    </div>
+                  )}
+                  <h2>{name}</h2>
+                  <p>{description}</p>
+                </article>
+              ))}
+            </div>
+          </>
+        </section>
+      )
+    }
+    {
+      page === 'gallery' && (
+        <section class="portfolio-container page-section">
+          <>
+            <h1 class="page-title">{nav.gallery}</h1>
+            <p class="section-intro">{t.galleryIntro}</p>
+            <GalleryView language={language} />
+          </>
+        </section>
+      )
+    }
+    {
+      page === 'about' && (
+        <section class="portfolio-container page-section about-layout">
+          <>
+            <div>
+              <h2 class="profile-specialty">{t.specialty}</h2>
+              {profile.biography[language] && (
+                <p>{profile.biography[language]}</p>
+              )}
+              <div class="about-links">
+                <>
+                  <a class="line-link" href={link('/work/')}>
+                    {t.work} ↗
+                  </a>
+                  <a class="line-link" href={link('/contact/')}>
+                    {nav.contact} ↗
+                  </a>
+                </>
+              </div>
+            </div>
+            <div class="profile-photo">
+              {profile.photo ? (
+                <Picture
+                  src={profile.photo}
+                  alt={profile.name}
+                  sizes="(min-width: 800px) 50vw, 92vw"
+                />
+              ) : (
+                <span>{t.photoPending}</span>
+              )}
+            </div>
+          </>
+        </section>
+      )
+    }
+    {
+      page === 'contact' && (
+        <section class="portfolio-container page-section">
+          <>
+            <h1 class="page-title">{nav.contact}</h1>
+            <div class="contact-layout">
+              <>
+                <div>
+                  <>
+                    <h2>{t.contactTitle}</h2>
+                    <p class="section-intro">{t.contactIntro}</p>
+                    <a
+                      class="line-link email-link"
+                      href={`mailto:${profile.email}`}
+                    >
+                      {profile.email}
+                    </a>
+                  </>
+                </div>
+                <ContactForm language={language} />
+              </>
+            </div>
+          </>
+        </section>
+      )
+    }
+  </main>
+  {page !== 'home' && <Footer />}
+</BaseLayout>

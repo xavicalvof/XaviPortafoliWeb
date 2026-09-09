@@ -1,0 +1,135 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { Language } from '@/lib/i18n';
+import Picture from '@/components/ui/Picture.astro';
+import { copy } from '@/lib/portfolio';
+export interface Props {
+  language: Language;
+}
+const t = copy[Astro.props.language];
+const assets = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/Galería/*',
+  { eager: true },
+);
+// Preserve the existing gallery order and captions. Descriptive editorial alt
+// text can be added here when supplied.
+const captions = [
+  ['Cafetal_07AM_1.55.1_1.50.1 (1).jpg', 'Cafetal 07AM'],
+  ['Cafetal_11AM_1.55.1.jpg', 'Cafetal 11AM'],
+  ['Cañon_I.Still (1).jpg', 'Cañón I'],
+  ['ERA_HoraBruja_V2 (3).jpg', 'Hora Bruja'],
+  ['HighresScreenshot00000 (1).png', 'Highres Screenshot 01'],
+  ['HighresScreenshot00000 (2).png', 'Highres Screenshot 02'],
+  ['image (6).png', 'Image 06'],
+  ['image (7).png', 'Image 07'],
+  ['LS_Filipinas_05_v001_0000 (1).jpeg', 'Filipinas 01'],
+  ['LS_Filipinas_05_v006_0000 (3).jpeg', 'Filipinas 06'],
+  ['LS_Ndisplay1.0000.v004 (1).jpeg', 'N Display 04'],
+  ['LS_Ndisplay1.0000.v006 (2).jpeg', 'N Display 06'],
+  ['LS_Ndisplay1.0000.v008 (1).jpeg', 'N Display 08'],
+  ['PlayaDia_1.91.1 (1).jpg', 'Playa de día'],
+  ['Playa_1.45.1 (1).jpg', 'Playa'],
+  ['Untitled_1.81.1 (1).jpg', 'Untitled'],
+];
+const images = captions.map(([file, title]) => ({
+  src: assets[`/src/assets/images/Galería/${file}`].default,
+  title,
+}));
+---
+
+<div class="gallery-grid">
+  {
+    images.map((image, index) => (
+      <button
+        type="button"
+        class="gallery-tile"
+        data-gallery-image
+        data-src={image.src.src}
+        data-title={image.title}
+        aria-label={`${image.title} — ${index + 1}/${images.length}`}
+        aria-haspopup="dialog"
+      >
+        <>
+          <Picture
+            src={image.src}
+            alt={image.title}
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 1000px) 30vw, (min-width: 600px) 46vw, 92vw"
+          />
+          <span>
+            {image.title} <span aria-hidden="true">↗</span>
+          </span>
+        </>
+      </button>
+    ))
+  }
+</div>
+<dialog class="lightbox" aria-labelledby="image-caption">
+  <div class="lightbox-toolbar">
+    <button type="button" data-previous aria-label={t.previous}>←</button
+    ><button type="button" data-close>{t.close} ×</button><button
+      type="button"
+      data-next
+      aria-label={t.nextImage}>→</button>
+  </div><img class="lightbox-image" alt="" width="1600" height="900" /><p
+    id="image-caption"
+    aria-live="polite"
+  >
+  </p>
+</dialog>
+<script>
+  import { onPage, onLeave } from '@/lib/lifecycle';
+  let activeDialog: HTMLDialogElement | null = null;
+  onLeave(() => {
+    activeDialog?.close();
+    document.documentElement.classList.remove('gallery-open');
+  });
+  onPage(() => {
+    const buttons = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('[data-gallery-image]'),
+    );
+    const dialog = document.querySelector<HTMLDialogElement>('.lightbox');
+    if (!dialog) return;
+    activeDialog = dialog;
+    const image = dialog.querySelector<HTMLImageElement>('img')!;
+    const caption = dialog.querySelector('#image-caption')!;
+    let index = 0;
+    let opener: HTMLButtonElement | undefined;
+    const show = (position: number) => {
+      index = (position + buttons.length) % buttons.length;
+      image.src = buttons[index].dataset.src!;
+      image.alt = buttons[index].dataset.title!;
+      caption.textContent = `${image.alt} · ${index + 1} / ${buttons.length}`;
+    };
+    buttons.forEach((button, i) =>
+      button.addEventListener('click', () => {
+        opener = button;
+        show(i);
+        dialog.showModal();
+        document.documentElement.classList.add('gallery-open');
+      }),
+    );
+    dialog
+      .querySelector('[data-close]')
+      ?.addEventListener('click', () => dialog.close());
+    dialog
+      .querySelector('[data-previous]')
+      ?.addEventListener('click', () => show(index - 1));
+    dialog
+      .querySelector('[data-next]')
+      ?.addEventListener('click', () => show(index + 1));
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        show(index + (event.key === 'ArrowLeft' ? -1 : 1));
+      }
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.documentElement.classList.remove('gallery-open');
+      opener?.focus();
+    });
+  });
+</script>

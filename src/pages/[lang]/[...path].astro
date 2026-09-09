@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import PortfolioView from '@/components/portfolio/PortfolioView.astro';
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  const pages = [
+    { path: undefined, page: 'home' },
+    { path: 'work', page: 'work' },
+    { path: 'landing', page: 'services' },
+    { path: 'gallery', page: 'gallery' },
+    { path: 'about', page: 'about' },
+    { path: 'contact', page: 'contact' },
+  ];
+  return ['en', 'ca'].flatMap((lang) => [
+    ...pages.map(({ path, page }) => ({
+      params: { lang, path },
+      props: { page },
+    })),
+    ...projects.map((project) => ({
+      params: { lang, path: `work/${project.id}` },
+      props: { page: 'detail', slug: project.id },
+    })),
+  ]);
+}
+type Props = import('@/components/portfolio/PortfolioView.astro').Props;
+---
+
+<PortfolioView {...Astro.props} />

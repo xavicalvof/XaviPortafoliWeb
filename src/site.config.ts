@@ -90,7 +90,7 @@ const siteConfig: SiteConfig = {
   ogLocale: 'es_ES',
 
   theme: {
-    accentColor: 'hsl(280, 70%, 60%)',
+    accentColor: '#a8cf65',
     defaultColorMode: 'dark',
     showThemeToggle: false,
   },

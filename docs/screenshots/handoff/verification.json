@@ -1,0 +1,218 @@
+{
+  "results": [
+    {
+      "route": "/ca/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/fieldnote-research-library/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/landing/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/gallery/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/about/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/contact/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/work/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/work/fieldnote-research-library/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/landing/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/gallery/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/about/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/work/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/work/fieldnote-research-library/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/landing/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/gallery/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/about/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/en/contact/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/fieldnote-research-library/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/landing/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/gallery/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/about/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/contact/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/work/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/work/fieldnote-research-library/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/landing/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/gallery/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/about/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/work/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/work/fieldnote-research-library/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/landing/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/gallery/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/about/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/en/contact/",
+      "width": 390,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "keyboard": "passed",
+  "legacyLanguage": "passed",
+  "form": "validation and mailto checked; not submitted"
+}

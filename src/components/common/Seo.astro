@@ -1,5 +1,6 @@
 ---
-import siteConfig, { resolvedOgLocale } from '@/site.config';
+import siteConfig from '@/site.config';
+import { pageLanguage } from '@/lib/portfolio';
 import { withBase } from '@/lib/url';
 
 export interface Props {
@@ -97,7 +98,10 @@ const jsonLd = !article
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:site_name" content={siteConfig.name} />
 <meta property="og:image" content={ogImageURL} />
-<meta property="og:locale" content={resolvedOgLocale} />
+<meta
+  property="og:locale"
+  content={{ es: 'es_ES', ca: 'ca_ES', en: 'en_US' }[pageLanguage(Astro.url)]}
+/>
 
 <!-- Article metadata -->
 {

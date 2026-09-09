@@ -1,0 +1,1 @@
+Desa aquí els fitxers reals. Noms suggerits: 01-portada.webp, 02-detall.webp, 03-proces.webp. Pots aportar JPG o PNG originals; no cal convertir-los prèviament. Actualitza les rutes de projecte.md perquè coincideixin.
