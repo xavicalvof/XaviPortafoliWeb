@@ -1,42 +1,18 @@
 ---
-title: 'El refugio Atómico'
-summary: 'A private, low-friction recovery companion that turns clinical plans into a manageable rhythm at home.'
-description: 'Interval helps patients follow rehabilitation plans, notice meaningful changes, and share concise progress with clinicians.'
-cover: '../../assets/images/Proyectos/El refugio Atómico/Portada.jpg'
-coverAlt: 'Portada del proyecto El refugio Atómico'
-images:
-  - '../../assets/images/projects/interval-plan.webp'
-  - '../../assets/images/projects/interval-checkin.webp'
-  - '../../assets/images/projects/interval-progress.webp'
-tech:
-  - 'React'
-  - 'TypeScript'
-  - 'Supabase'
-  - 'Storybook'
-role: 'Product design'
+title: "El refugio atómico"
+summary: "Desenvolupament d’un ampli conjunt d’escenaris en temps real per al plató de producció virtual i per a les pantalles que simulaven les vistes a l’exterior del búnquer. Els entorns incorporaven variants d’il·luminació per representar diferents moments del dia."
+description: "Desenvolupament d’un ampli conjunt d’escenaris en temps real per al plató de producció virtual i per a les pantalles que simulaven les vistes a l’exterior del búnquer. Els entorns incorporaven variants d’il·luminació per representar diferents moments del dia. La meva tasca consistia a crear aquests escenaris, gestionar el volum de contingut i adaptar-lo a les necessitats de cada seqüència."
+context: "Desenvolupament d’un ampli conjunt d’escenaris en temps real per al plató de producció virtual i per a les pantalles que simulaven les vistes a l’exterior del búnquer. Els entorns incorporaven variants d’il·luminació per representar diferents moments del dia."
+contribution: "La meva tasca consistia a crear aquests escenaris, gestionar el volum de contingut i adaptar-lo a les necessitats de cada seqüència."
+period: "gener de 2024 – agost de 2024"
+role: "Artista d’entorns 3D i director tècnic d’Unreal Engine en rodatge"
+client: "Vancouver Media"
 year: 2024
-featured: false
-client: 'Interval Health'
-duration: '20 weeks'
+tech: []
+cover: "../../assets/images/Proyectos/El refugio Atómico/Portada.jpg"
+coverAlt: "El refugio atómico"
+translations: {"es":{"title":"El refugio atómico","period":"enero de 2024 – agosto de 2024","role":"Artista de entornos 3D y director técnico de Unreal Engine en rodaje","context":"Desarrollo de un amplio conjunto de escenarios en tiempo real para el plató de producción virtual y las pantallas que simulaban las vistas al exterior del búnker. Los entornos incorporaban variantes de iluminación para representar diferentes momentos del día.","contribution":"Mi trabajo consistía en crear estos escenarios, gestionar el volumen de contenido y adaptarlo a las necesidades de cada secuencia."},"en":{"title":"El refugio atómico","period":"January 2024 – August 2024","role":"3D environment artist and on-set Unreal Engine technical director","context":"Development of a large collection of real-time environments for the virtual production stage and the screens simulating exterior views from the bunker. The environments included lighting variants representing different times of day.","contribution":"My work involved creating these environments, managing the volume of content and adapting it to each sequence’s requirements."}}
+images: [{"src":"../../assets/images/Proyectos/El refugio Atómico/ERA_01 copy.png","alt":"El refugio atómico — 1"},{"src":"../../assets/images/Proyectos/El refugio Atómico/ERA_02 copy.png","alt":"El refugio atómico — 2"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE1Volverdelinfierno-10’35”.jpg","alt":"El refugio atómico — 3"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE1Volverdelinfierno-10’43”.jpg","alt":"El refugio atómico — 4"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE1Volverdelinfierno-12’33”.jpg","alt":"El refugio atómico — 5"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE1Volverdelinfierno-12’48”.jpg","alt":"El refugio atómico — 6"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE2Lagranestafadelahumanidad-31’08”.jpg","alt":"El refugio atómico — 7"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE3Odioalosricos-1’43”.jpg","alt":"El refugio atómico — 8"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE3Odioalosricos-17’44”.jpg","alt":"El refugio atómico — 9"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE3Odioalosricos-32’55”.jpg","alt":"El refugio atómico — 10"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE3Odioalosricos-33’16”.jpg","alt":"El refugio atómico — 11"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE4Laparadojadelmillonario-44’26”.jpg","alt":"El refugio atómico — 12"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE5Laverdadestsobrevalorada-7’15”.jpg","alt":"El refugio atómico — 13"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE6Lamujerdelosdascontados-1’26”.jpg","alt":"El refugio atómico — 14"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE6Lamujerdelosdascontados-3’16”.jpg","alt":"El refugio atómico — 15"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE6Lamujerdelosdascontados-14’42”.jpg","alt":"El refugio atómico — 16"},{"src":"../../assets/images/Proyectos/El refugio Atómico/VS--Netflix-ElrefugioatmicoE6Lamujerdelosdascontados-29’07”.jpg","alt":"El refugio atómico — 17"}]
 ---
 
-## Between appointments
-
-Recovery plans often arrive as dense printouts at a moment when attention is already stretched. Patients needed a simple answer to “what should I do today?” without turning rehabilitation into another performance metric.
-
-We built the daily experience around a short plan, clear demonstrations, and a check-in that takes less than a minute. The product distinguishes between expected discomfort and signals that require clinical attention.
-
-## Progress without pressure
-
-Instead of streaks, Interval shows patterns over time and makes missed days ordinary. Patients control what is shared, and clinicians receive a concise view built around change—not a stream of notifications.
-
-### Safety in the interaction
-
-- Every exercise preserves the clinician’s written guidance.
-- Escalation language is direct and reviewed by clinical staff.
-- Motion can be reduced without losing instructional meaning.
-- Sensitive notes remain local until the patient chooses to share.
-
-## Outcome
-
-Pilot participants completed more of their prescribed plan and arrived at follow-ups with clearer questions. Clinicians spent less appointment time reconstructing the weeks between visits.
+Desenvolupament d’un ampli conjunt d’escenaris en temps real per al plató de producció virtual i per a les pantalles que simulaven les vistes a l’exterior del búnquer. Els entorns incorporaven variants d’il·luminació per representar diferents moments del dia. La meva tasca consistia a crear aquests escenaris, gestionar el volum de contingut i adaptar-lo a les necessitats de cada seqüència.

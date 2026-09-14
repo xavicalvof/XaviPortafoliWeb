@@ -1,0 +1,82 @@
+---
+import type { Language } from '@/lib/i18n';
+import { copy } from '@/lib/portfolio';
+export interface Props {
+  language: Language;
+}
+const t = copy[Astro.props.language];
+---
+
+<dialog class="lightbox" aria-labelledby="image-caption">
+  <div class="lightbox-toolbar">
+    <button type="button" data-previous aria-label={t.previous}>←</button
+    ><button type="button" data-close>{t.close} ×</button><button
+      type="button"
+      data-next
+      aria-label={t.nextImage}>→</button
+    >
+  </div><div class="lightbox-frame">
+    <img class="lightbox-image" alt="" width="1600" height="900" />
+  </div><p id="image-caption" class="sr-only" aria-live="polite"></p>
+</dialog>
+<script>
+  import { onPage, onLeave } from '@/lib/lifecycle';
+  let activeDialog: HTMLDialogElement | null = null;
+  onLeave(() => {
+    activeDialog?.close();
+    document.documentElement.classList.remove('gallery-open');
+  });
+  onPage(() => {
+    const buttons = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('[data-gallery-image]'),
+    );
+    const dialog = document.querySelector<HTMLDialogElement>('.lightbox');
+    if (!dialog) return;
+    activeDialog = dialog;
+    const image = dialog.querySelector<HTMLImageElement>('img')!;
+    const caption = dialog.querySelector('#image-caption')!;
+    let index = 0;
+    let opener: HTMLButtonElement | undefined;
+    const show = (position: number) => {
+      index = (position + buttons.length) % buttons.length;
+      image.src = buttons[index].dataset.src!;
+      image.alt = buttons[index].dataset.title!;
+      const ratio = Number(buttons[index].dataset.ratio) || 16 / 9;
+      const frame = image.parentElement!;
+      frame.style.aspectRatio = String(ratio);
+      frame.style.width = `min(100%, ${74 * ratio}svh)`;
+      image.style.objectPosition = `50% ${buttons[index].dataset.position || '50%'}`;
+      caption.textContent = `${image.alt} · ${index + 1} / ${buttons.length}`;
+    };
+    buttons.forEach((button, i) =>
+      button.addEventListener('click', () => {
+        opener = button;
+        show(i);
+        dialog.showModal();
+        document.documentElement.classList.add('gallery-open');
+      }),
+    );
+    dialog
+      .querySelector('[data-close]')
+      ?.addEventListener('click', () => dialog.close());
+    dialog
+      .querySelector('[data-previous]')
+      ?.addEventListener('click', () => show(index - 1));
+    dialog
+      .querySelector('[data-next]')
+      ?.addEventListener('click', () => show(index + 1));
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        show(index + (event.key === 'ArrowLeft' ? -1 : 1));
+      }
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.documentElement.classList.remove('gallery-open');
+      opener?.focus();
+    });
+  });
+</script>

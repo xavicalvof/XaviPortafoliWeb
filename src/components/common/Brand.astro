@@ -1,21 +1,29 @@
 ---
-import guide from '@/assets/Guiadestil/Guidestil01.png';
+import symbol from '@/assets/Logos/xavi-calvo-svg/simbol.svg';
+import name from '@/assets/Logos/xavi-calvo-svg/nom.svg';
 ---
 
-<!-- Provisional source: original repository brand guide. Replace this component's
-     source with the transparent master when supplied; never trace mockup logos. -->
-<svg
-  viewBox="80 220 530 270"
-  role="img"
-  aria-label="Xavi Calvo"
-  class="brand-logo"
->
-  <image href={guide.src} width="1536" height="1024" />
-</svg>
+<span class="brand-logo">
+  <img src={symbol.src} alt="" width="282" height="302" />
+  <img src={name.src} alt="Xavi Calvo" width="268" height="302" />
+</span>
 
 <style>
   .brand-logo {
-    width: 7.5rem;
-    height: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .brand-logo img {
+    height: 64px;
+    width: auto;
+  }
+  @media (max-width: 1100px) {
+    .brand-logo {
+      gap: 18px;
+    }
+    .brand-logo img {
+      height: 56px;
+    }
   }
 </style>

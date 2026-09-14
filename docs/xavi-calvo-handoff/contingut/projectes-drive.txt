@@ -1,0 +1,61 @@
+﻿Projectes — Contingut del portafoli
+Guia d’ús del document
+Document de referència per als textos del portafoli. Les fitxes utilitzen els mateixos camps i estan redactades en català amb un to professional. Cada descripció presenta primer el projecte i el repte en to neutre, i després concreta l’aportació personal. La primera persona s’utilitza de manera discreta, evitant la repetició de «vaig» i mantenint els crèdits dels equips implicats.
+Per a Codex: cada encapçalament de projecte identifica una fitxa independent. «Període» indica les dates de participació, no les d’estrena. Utilitza «Descripció» com a text principal. No completis dades absents ni converteixis notes pendents en afirmacions. L’apartat final «Revisió editorial — Notes internes» no és contingut per publicar.
+
+
+Berlín — Temporada 1
+Període: febrer de 2023 – juny de 2023
+Càrrec: Supervisor del departament d’art virtual (VAD) i director tècnic d’Unreal Engine en rodatge
+Client: Vancouver Media
+Descripció: Recreació d’un aeròdrom real amb Unreal Engine per al rodatge en un volum LED. L’entorn en temps real permet adaptar les dimensions de la pista, la il·luminació, l’hora del dia, els recorreguts i les velocitats a les necessitats de cada pla. Com a supervisor a Magic Fennec, la meva tasca incloïa el desenvolupament i la supervisió del contingut, l’ajust dels escenaris durant el rodatge i el suport al funcionament de la infraestructura tècnica.
+
+
+Berlín — Temporada 2
+Període: febrer de 2025 – agost de 2025
+Càrrec: Artista d’entorns 3D i director tècnic d’Unreal Engine en rodatge
+Client: Vancouver Media
+Descripció: Creació d’escenaris amb Unreal Engine per al plató de producció virtual de la segona temporada de Berlín. El projecte incloïa diverses carreteres nocturnes, amb un control precís de la il·luminació i el detall, i un entorn que combinava Gaussian splatting amb elements de 3D convencional. La meva responsabilitat se centrava en la creació dels escenaris i en la integració d’aquestes tècniques per utilitzar-les en rodatge.
+
+
+El refugio atómico
+Període: gener de 2024 – agost de 2024
+Càrrec: Artista d’entorns 3D i director tècnic d’Unreal Engine en rodatge
+Client: Vancouver Media
+Descripció: Desenvolupament d’un ampli conjunt d’escenaris en temps real per al plató de producció virtual i per a les pantalles que simulaven les vistes a l’exterior del búnquer. Els entorns incorporaven variants d’il·luminació per representar diferents moments del dia. La meva tasca consistia a crear aquests escenaris, gestionar el volum de contingut i adaptar-lo a les necessitats de cada seqüència.
+
+
+Llotja de Mallorca
+Període: novembre de 2024
+Càrrec: Artista d’entorns 3D
+Client: Mediapro
+Descripció: Reconstrucció del model 3D de la Llotja de Mallorca a partir d’una captura fotogramètrica amb zones incompletes i errors de geometria. La meva intervenció va abastar la neteja de la malla i el remodelatge dels elements que no es podien recuperar de la captura original, com el terra, les finestres i les columnes.
+
+
+ECAM — Curs de creació d’entorns per a producció virtual
+Període: gener de 2025 – actualitat
+Càrrec: Creador de continguts formatius i tutor
+Client: ECAM
+Descripció: Curs de creació d’entorns amb Unreal Engine per a producció virtual, desenvolupat en col·laboració amb l’ECAM. La meva aportació inclou l’elaboració dels continguts, la gravació de les lliçons en vídeo i la tutoria del curs, amb acompanyament de l’alumnat durant el procés d’aprenentatge.
+Enllaç del curs: https://vfx.ecam.es/curso/creacion-de-entornos-con-unreal-engine-para-vp/
+
+
+McKallan — Personatges 3D per a publicitat
+Període: març de 2026
+Càrrec: Artista de personatges 3D
+Client: Void and Logic
+Descripció: Creació de tres personatges 3D per a una campanya publicitària de McKallan, amb un estil visual específic i coherent entre els tres dissenys. La meva tasca es va centrar en el modelatge i la texturització dels personatges d’acord amb l’estil definit per al projecte.
+
+
+Audi e-tron — Campanya publicitària
+Període: febrer de 2021
+Càrrec: Artista d’Unreal Engine i artista tècnic en rodatge
+Client: Audi
+Descripció: Campanya d’Audi e-tron rodada a Londres amb producció virtual i croma, en col·laboració amb els equips de Magic Fennec i Mo-Sys. Com a membre de Magic Fennec, vaig treballar amb el director Sebastien Grousset en la previsualització de l’anunci i en l’ajust i l’optimització dels escenaris, a més de participar en el rodatge.
+
+
+Mapi
+Període: juny de 2022 – agost de 2022
+Càrrec: Supervisor d’Unreal Engine
+Client: RTVE
+Descripció: Desenvolupament d’un personatge virtual renderitzat en temps real per a una producció multicàmera, amb seguiment de Mo-Sys per a les càmeres i per al cap virtual. Com a supervisor a Magic Fennec, en col·laboració amb Iralta, em vaig encarregar de programar i desenvolupar un sistema amb Unreal Engine i DMX per coordinar el funcionament del personatge amb la il·luminació del plató i els seus efectes.Durant el rodatge estava pendent de supervisar que tot el sistema funcioni correctament així com està en sincronia amb el realitzador per llençar els diferents efectes tant de llums com de partícules. A nivell artístic també vaig crear amb Niagara una gran quantitat d’efectes que s’anaven llançant i actualitzant en cada programa.

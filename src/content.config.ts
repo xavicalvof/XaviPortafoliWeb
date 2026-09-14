@@ -56,7 +56,28 @@ const projects = defineCollection({
       title: z.string(),
       summary: z.string(),
       description: z.string().optional(),
-      cover: image(),
+      cover: image().optional(),
+      period: z.string().optional(),
+      context: z.string().optional(),
+      contribution: z.string().optional(),
+      translations: z
+        .object({
+          es: z.object({
+            title: z.string(),
+            period: z.string(),
+            role: z.string(),
+            context: z.string(),
+            contribution: z.string(),
+          }),
+          en: z.object({
+            title: z.string(),
+            period: z.string(),
+            role: z.string(),
+            context: z.string(),
+            contribution: z.string(),
+          }),
+        })
+        .optional(),
       coverAlt: z.string().optional(),
       // A bare path (alt is auto-generated) or { src, alt } for a custom alt.
       // Both are normalized to { src, alt? } so every consumer sees one shape.

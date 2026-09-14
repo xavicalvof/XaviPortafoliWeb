@@ -1,42 +1,17 @@
 ---
-title: 'Berlín S1'
-summary: 'An atmospheric digital archive where oral histories, objects, and places can be explored without losing their relationships.'
-description: 'Afterlight pairs a flexible editorial system with a spatial browsing model for a community-held cultural collection.'
-cover: '../../assets/images/Proyectos/Berlín S1/Portada.webp'
-coverAlt: 'Portada del proyecto Berlín S1'
-images:
-  - src: '../../assets/images/projects/afterlight-story.webp'
-    alt: 'Curated story view pairing an oral history transcript with archival photographs'
-  - src: '../../assets/images/projects/afterlight-map.webp'
-    alt: 'Geographic browsing view plotting collection records across a neighbourhood map'
-  - src: '../../assets/images/projects/afterlight-collection.webp'
-    alt: 'Open exploration grid showing connected records with provenance details'
-tech:
-  - 'Astro'
-  - 'TypeScript'
-  - 'Sanity'
-  - 'MapLibre'
-role: 'Creative development'
+title: "Berlín — Temporada 1"
+summary: "Recreació d’un aeròdrom real amb Unreal Engine per al rodatge en un volum LED. L’entorn en temps real permet adaptar les dimensions de la pista, la il·luminació, l’hora del dia, els recorreguts i les velocitats a les necessitats de cada pla."
+description: "Recreació d’un aeròdrom real amb Unreal Engine per al rodatge en un volum LED. L’entorn en temps real permet adaptar les dimensions de la pista, la il·luminació, l’hora del dia, els recorreguts i les velocitats a les necessitats de cada pla. Com a supervisor a Magic Fennec, la meva tasca incloïa el desenvolupament i la supervisió del contingut, l’ajust dels escenaris durant el rodatge i el suport al funcionament de la infraestructura tècnica."
+context: "Recreació d’un aeròdrom real amb Unreal Engine per al rodatge en un volum LED. L’entorn en temps real permet adaptar les dimensions de la pista, la il·luminació, l’hora del dia, els recorreguts i les velocitats a les necessitats de cada pla."
+contribution: "Com a supervisor a Magic Fennec, la meva tasca incloïa el desenvolupament i la supervisió del contingut, l’ajust dels escenaris durant el rodatge i el suport al funcionament de la infraestructura tècnica."
+period: "febrer de 2023 – juny de 2023"
+role: "Supervisor del departament d’art virtual (VAD) i director tècnic d’Unreal Engine en rodatge"
+client: "Vancouver Media"
 year: 2023
-featured: false
-links:
-  live: 'https://example.org'
-client: 'Afterlight Foundation'
-duration: '14 weeks'
+tech: ["Unreal Engine"]
+cover: "../../assets/images/Proyectos/Berlín S1/Portada.webp"
+coverAlt: "Berlín — Temporada 1"
+translations: {"es":{"title":"Berlín — Temporada 1","period":"febrero de 2023 – junio de 2023","role":"Supervisor del departamento de arte virtual (VAD) y director técnico de Unreal Engine en rodaje","context":"Recreación de un aeródromo real con Unreal Engine para el rodaje en un volumen LED. El entorno en tiempo real permite adaptar las dimensiones de la pista, la iluminación, la hora del día, los recorridos y las velocidades a las necesidades de cada plano.","contribution":"Como supervisor en Magic Fennec, mi trabajo incluía el desarrollo y la supervisión del contenido, el ajuste de los escenarios durante el rodaje y el apoyo al funcionamiento de la infraestructura técnica."},"en":{"title":"Berlín — Season 1","period":"February 2023 – June 2023","role":"Virtual Art Department (VAD) supervisor and on-set Unreal Engine technical director","context":"Recreation of a real airfield in Unreal Engine for filming in an LED volume. The real-time environment allows the runway dimensions, lighting, time of day, routes and speeds to be adapted to each shot.","contribution":"As a supervisor at Magic Fennec, my work included developing and supervising content, adjusting environments during filming and supporting the technical infrastructure."}}
 ---
 
-## A collection is a network
-
-The archive began as a conventional catalogue, but its meaning lived in the links between a voice, an object, a street, and a date. Community editors needed to express those relationships without forcing every story into the same template.
-
-Afterlight supports three ways into the collection: curated stories, a geographic view, and open exploration through connected records. Each route preserves provenance and makes the path back to the source clear.
-
-## Editorial control, durable structure
-
-Editors compose stories from reusable records while retaining the ability to write around them. A restrained motion language gives transitions a sense of place without slowing down navigation or obscuring focus.
-
-The site is progressively enhanced, readable without client-side JavaScript, and designed to remain useful as the collection grows.
-
-## Outcome
-
-The public launch connected material that had previously been distributed across personal drives and physical catalogues. More importantly, contributors gained a process for correcting, contextualizing, and extending their own records.
+Recreació d’un aeròdrom real amb Unreal Engine per al rodatge en un volum LED. L’entorn en temps real permet adaptar les dimensions de la pista, la il·luminació, l’hora del dia, els recorreguts i les velocitats a les necessitats de cada pla. Com a supervisor a Magic Fennec, la meva tasca incloïa el desenvolupament i la supervisió del contingut, l’ajust dels escenaris durant el rodatge i el suport al funcionament de la infraestructura tècnica.

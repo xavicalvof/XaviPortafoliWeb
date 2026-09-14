@@ -1,46 +1,17 @@
 ---
-title: 'Recreación Llotja Mallorca'
-summary: 'A calm, accessible service hub that helps residents find local support without learning how government is organized.'
-description: 'Northstar turns a fragmented catalogue of city services into a task-focused experience designed for stressful, time-sensitive moments.'
-cover: '../../assets/images/Proyectos/Recreación Llotja Mallorca/PortadaLlotjaMallorca.jpg'
-coverAlt: 'Portada del proyecto Recreación Llotja Mallorca'
-images:
-  - '../../assets/images/projects/northstar-search.webp'
-  - '../../assets/images/projects/northstar-mobile.webp'
-  - '../../assets/images/projects/northstar-directory.webp'
-tech:
-  - 'Astro'
-  - 'TypeScript'
-  - 'Contentful'
-  - 'Playwright'
-role: 'Product design & frontend'
-year: 2026
-featured: true
-links:
-  live: 'https://example.com'
-client: 'Northstar Council'
-duration: '16 weeks'
+title: "Llotja de Mallorca"
+summary: "Reconstrucció del model 3D de la Llotja de Mallorca a partir d’una captura fotogramètrica amb zones incompletes i errors de geometria."
+description: "Reconstrucció del model 3D de la Llotja de Mallorca a partir d’una captura fotogramètrica amb zones incompletes i errors de geometria. La meva intervenció va abastar la neteja de la malla i el remodelatge dels elements que no es podien recuperar de la captura original, com el terra, les finestres i les columnes."
+context: "Reconstrucció del model 3D de la Llotja de Mallorca a partir d’una captura fotogramètrica amb zones incompletes i errors de geometria."
+contribution: "La meva intervenció va abastar la neteja de la malla i el remodelatge dels elements que no es podien recuperar de la captura original, com el terra, les finestres i les columnes."
+period: "novembre de 2024"
+role: "Artista d’entorns 3D"
+client: "Mediapro"
+year: 2024
+tech: []
+cover: "../../assets/images/Proyectos/Recreación Llotja Mallorca/PortadaLlotjaMallorca.jpg"
+coverAlt: "Llotja de Mallorca"
+translations: {"es":{"title":"Llotja de Mallorca","period":"noviembre de 2024","role":"Artista de entornos 3D","context":"Reconstrucción del modelo 3D de la Llotja de Mallorca a partir de una captura fotogramétrica con zonas incompletas y errores de geometría.","contribution":"Mi intervención abarcó la limpieza de la malla y el remodelado de los elementos que no se podían recuperar de la captura original, como el suelo, las ventanas y las columnas."},"en":{"title":"Llotja de Mallorca","period":"November 2024","role":"3D environment artist","context":"Reconstruction of the Llotja de Mallorca 3D model from a photogrammetric capture with incomplete areas and geometry errors.","contribution":"My work covered cleaning up the mesh and remodeling elements that could not be recovered from the original capture, including the floor, windows and columns."}}
 ---
 
-## The constraint
-
-Residents arrived with a need, but the old site answered with departments. Finding rental support, a permit, or a missed collection meant translating a life event into the council’s internal language.
-
-We reorganized more than 240 services around **plain-language tasks**. Search and navigation share one taxonomy, so the experience stays predictable whether a visitor types, browses, or follows a link from a letter.
-
-> The useful interface was not the one with the most answers. It was the one that made the next step unmistakable.
-
-## A system for urgent moments
-
-The visual system lowers cognitive load with stable page anatomy, clear status language, and generous touch targets. High-priority services expose eligibility and response times before asking for personal information.
-
-### What changed
-
-- Task completion is possible without knowing a department name.
-- Every form preserves progress and explains why information is requested.
-- Content editors preview service states before publishing.
-- Automated journeys cover keyboard, screen-reader, and narrow-screen use.
-
-## Outcome
-
-In moderated testing, residents found the correct service faster and with fewer backtracks. The shared content model also gave internal teams one source of truth for service hours, eligibility, and disruptions.
+Reconstrucció del model 3D de la Llotja de Mallorca a partir d’una captura fotogramètrica amb zones incompletes i errors de geometria. La meva intervenció va abastar la neteja de la malla i el remodelatge dels elements que no es podien recuperar de la captura original, com el terra, les finestres i les columnes.

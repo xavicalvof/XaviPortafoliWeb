@@ -11,7 +11,7 @@ export async function getStaticPaths() {
     { path: 'about', page: 'about' },
     { path: 'contact', page: 'contact' },
   ];
-  return ['en', 'ca'].flatMap((lang) => [
+  return ['en', 'ca', 'es'].flatMap((lang) => [
     ...pages.map(({ path, page }) => ({
       params: { lang, path },
       props: { page },

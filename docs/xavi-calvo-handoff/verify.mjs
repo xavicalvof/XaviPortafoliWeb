@@ -12,6 +12,7 @@ const output = 'docs/screenshots/handoff';
 await mkdir(output, { recursive: true });
 const errors = [];
 const results = [];
+const cardSizes = new Map();
 const page = await browser.newPage();
 page.on('pageerror', (error) => errors.push(error.message));
 const paths = [
@@ -22,18 +23,48 @@ const paths = [
   '/gallery/',
   '/about/',
   '/contact/',
+  '/work/afterlight-cultural-archive/',
+  '/work/interval-health-companion/',
+  '/work/northstar-civic-platform/',
+  '/work/morrow-studio/',
+  '/work/ecam-entorns-produccio-virtual/',
+  '/work/mckallan-personatges-3d/',
+  '/work/audi-e-tron/',
 ];
 try {
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: width === 1440 ? 900 : 844 });
     for (const language of ['ca', 'es', 'en']) {
       for (const [index, path] of paths.entries()) {
-        const route = `${language === 'es' ? '' : '/' + language}${path}`;
+        const route = `${language === 'en' ? '' : '/' + language}${path}`;
         const response = await page.goto(base + route);
         assert.equal(response.status(), 200, route);
         await page.evaluate(() => document.fonts.ready);
         assert.equal(await page.locator('html').getAttribute('lang'), language);
-        assert.equal(await page.locator('h1').count(), 1);
+        assert.equal(await page.locator('h1').count(), 1, route);
+        if (path === '/') {
+          assert.equal(
+            await page.locator('.hero-copy a, .hero-copy > span').count(),
+            0,
+          );
+          assert.ok(
+            await page
+              .locator('h1')
+              .evaluate((el) =>
+                getComputedStyle(el).fontFamily.includes('Space Grotesk'),
+              ),
+          );
+          assert.equal(await page.locator('.brand-logo img').count(), 2);
+        } else if (path !== '/about/') {
+          const spacing = await page
+            .locator('.page-title')
+            .evaluate(
+              (el) =>
+                el.nextElementSibling.getBoundingClientRect().top -
+                el.getBoundingClientRect().bottom,
+            );
+          assert.ok(spacing >= 35, `heading spacing: ${route} ${spacing}`);
+        }
         assert.ok(
           await page.evaluate(
             () => document.documentElement.scrollWidth <= innerWidth,
@@ -72,7 +103,40 @@ try {
             );
           assert.ok(boxes.every((b) => Math.abs(b.width - boxes[0].width) < 1));
         }
-        if (language === 'ca') {
+        if (path === '/work/') {
+          assert.equal(await page.locator('.work-card').count(), 8);
+          const cover = await page
+            .locator('.work-card img')
+            .first()
+            .boundingBox();
+          assert.ok(
+            Math.abs(cover.width / cover.height - 2.15) < 0.02,
+            'horizontal project covers',
+          );
+          cardSizes.set(`${language}-${width}`, cover);
+          assert.equal(
+            await page.locator('.work-cover-placeholder').count(),
+            2,
+          );
+        }
+        if (path.startsWith('/work/') && path !== '/work/') {
+          const cover = await page
+            .locator('.detail-cover, .detail-cover-placeholder')
+            .boundingBox();
+          const card = cardSizes.get(`${language}-${width}`);
+          assert.ok(
+            Math.abs(cover.width - card.width) < 1 &&
+              Math.abs(cover.height - card.height) < 1,
+            'detail cover matches listing',
+          );
+        }
+        if (path === '/gallery/') {
+          assert.equal(
+            await page.locator('.section-intro, .gallery-tile > span').count(),
+            0,
+          );
+        }
+        if (language === 'ca' && index < 7) {
           await page.locator('img').evaluateAll(async (nodes) => {
             await Promise.all(
               nodes.map((img) => {
@@ -91,9 +155,12 @@ try {
     }
   }
   await page.goto(base + '/ca/gallery/');
+  const galleryURL = page.url();
   await page.locator('[data-gallery-image]').first().focus();
   await page.keyboard.press('Enter');
   assert.ok(await page.locator('dialog').evaluate((el) => el.open));
+  assert.equal(page.url(), galleryURL, 'lightbox preserves page URL');
+  await page.screenshot({ path: `${output}/gallery-lightbox-mobile.png` });
   const initialCaption = await page.locator('#image-caption').textContent();
   await page.keyboard.press('ArrowRight');
   assert.notEqual(
@@ -107,13 +174,19 @@ try {
       .first()
       .evaluate((el) => el === document.activeElement),
   );
+  await page.locator('[data-gallery-image]').first().click();
+  await page.locator('[data-close]').click();
+  assert.equal(await page.locator('dialog').evaluate((el) => el.open), false);
+  await page.locator('[data-gallery-image]').first().click();
+  await page.mouse.click(2, 2);
+  assert.equal(await page.locator('dialog').evaluate((el) => el.open), false);
   await page.locator('.menu-toggle').click();
   assert.equal(
     await page.locator('.menu-toggle').getAttribute('aria-expanded'),
     'true',
   );
   await page.locator('.mobile-languages a[lang="en"]').click();
-  await page.waitForURL('**/en/gallery/');
+  await page.waitForURL(base + '/gallery/');
   await page.locator('.menu-toggle').click();
   await page.locator('#navigation a').first().focus();
   await page.keyboard.press('Escape');
@@ -128,6 +201,12 @@ try {
   );
   await page.goto(base + '/work/?lang=ca');
   await page.waitForURL('**/ca/work/');
+  await page.goto(base + '/ca/work/?lang=en');
+  await page.waitForURL(base + '/work/');
+  await page.goto(base + '/work/?lang=es');
+  await page.waitForURL(base + '/es/work/');
+  await page.goto(base + '/en/work/');
+  assert.equal(await page.locator('html').getAttribute('lang'), 'en');
   await page.goto(base + '/ca/contact/');
   assert.ok(
     (await page.locator('form').getAttribute('action')).startsWith('mailto:'),

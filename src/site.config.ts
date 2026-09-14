@@ -76,7 +76,9 @@ export interface SiteConfig {
 
 const SITE_URL =
   process.env.PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://xavi-portafoli-web-git-main-xavi16.vercel.app');
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://xavi-portafoli-web-git-main-xavi16.vercel.app');
 
 const siteConfig: SiteConfig = {
   name: 'Xavi Calvo',
@@ -86,8 +88,8 @@ const siteConfig: SiteConfig = {
   url: SITE_URL,
   ogImage: '/og-image.png',
   twitterHandle: '@xavic',
-  lang: 'es',
-  ogLocale: 'es_ES',
+  lang: 'en',
+  ogLocale: 'en_US',
 
   theme: {
     accentColor: '#a8cf65',

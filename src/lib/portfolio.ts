@@ -1,11 +1,17 @@
 import type { ImageMetadata } from 'astro';
 import type { Language } from './i18n';
 import { withBase } from './url';
-import homeImage from '@/assets/images/Inicio/image (6).png';
+import homeImage from '@/assets/images/ai/home.png';
+import environments from '@/assets/images/ai/environments.png';
+import virtualProduction from '@/assets/images/ai/virtual-production.png';
+import immersive from '@/assets/images/ai/immersive.png';
+import previsualization from '@/assets/images/ai/previsualization.png';
+import splatting from '@/assets/images/ai/gaussian-splatting.png';
+import photogrammetry from '@/assets/images/ai/photogrammetry.png';
 
-// Editorial entry points. Only supplied, verified assets belong here.
+// Editorial entry points. AI images are provisional illustrations, never projects.
 export const home = {
-  title: 'REAL-TIME CREATION',
+  title: 'Real-time creation',
   image: homeImage,
   focalPoint: '50% 50%',
 };
@@ -21,37 +27,39 @@ export const projectOrder = [
   'afterlight-cultural-archive',
   'northstar-civic-platform',
   'morrow-studio',
+  'ecam-entorns-produccio-virtual',
+  'mckallan-personatges-3d',
+  'audi-e-tron',
 ];
-// The old Markdown records combine real titles/covers with theme demo copy.
-// Keep those files intact, but publish additional facts only after validation here.
-export interface ProjectEditorial {
-  context?: Partial<Record<Language, string>>;
-  contribution?: Partial<Record<Language, string>>;
-  year?: number;
-  role?: string;
-  tools?: string[];
-  client?: string;
-  images?: { src: ImageMetadata; alt: string; caption?: string }[];
-}
-export const projectEditorial: Record<string, ProjectEditorial> = {};
-export const serviceImages: (ImageMetadata | undefined)[] =
-  Array(6).fill(undefined);
+export const serviceImages: (ImageMetadata | undefined)[] = [
+  environments,
+  virtualProduction,
+  immersive,
+  previsualization,
+  splatting,
+  photogrammetry,
+];
 export function pageLanguage(url: URL): Language {
   return url.pathname.split('/').includes('ca')
     ? 'ca'
-    : url.pathname.split('/').includes('en')
-      ? 'en'
-      : 'es';
+    : url.pathname.split('/').includes('es')
+      ? 'es'
+      : 'en';
 }
 export function localLink(path: string, language: Language): string {
-  return withBase(`${language === 'es' ? '' : '/' + language}${path}`);
+  return withBase(`${language === 'en' ? '' : '/' + language}${path}`);
 }
 export function plainPath(path: string): string {
-  return path.replace(/^\/(ca|en)(?=\/)/, '') || '/';
+  return path.replace(/^\/(ca|en|es)(?=\/|$)/, '') || '/';
 }
 
 export const copy = {
   ca: {
+    period: 'Període de participació',
+    course: 'Veure el curs',
+    coverPending: 'Portada pendent',
+    aiNotice: 'Imatge conceptual generada amb IA',
+    aiServicesNotice: 'Imatges conceptuals generades amb IA',
     hero: 'Creació d’escenaris · Producció virtual · Experiències immersives',
     engine: 'Amb Unreal Engine',
     work: 'Veure projectes',
@@ -108,6 +116,11 @@ export const copy = {
     ],
   },
   es: {
+    period: 'Período de participación',
+    course: 'Ver el curso',
+    coverPending: 'Portada pendiente',
+    aiNotice: 'Imagen conceptual generada con IA',
+    aiServicesNotice: 'Imágenes conceptuales generadas con IA',
     hero: 'Creación de escenarios · Producción virtual · Experiencias inmersivas',
     engine: 'Con Unreal Engine',
     work: 'Ver proyectos',
@@ -164,6 +177,11 @@ export const copy = {
     ],
   },
   en: {
+    period: 'Participation period',
+    course: 'View course',
+    coverPending: 'Cover pending',
+    aiNotice: 'AI-generated concept image',
+    aiServicesNotice: 'AI-generated concept images',
     hero: 'Environment creation · Virtual production · Immersive experiences',
     engine: 'With Unreal Engine',
     work: 'View projects',

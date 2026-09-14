@@ -36,6 +36,111 @@
       "passed": true
     },
     {
+      "route": "/ca/work/afterlight-cultural-archive/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/interval-health-companion/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/northstar-civic-platform/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/morrow-studio/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/ecam-entorns-produccio-virtual/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/mckallan-personatges-3d/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/audi-e-tron/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/fieldnote-research-library/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/landing/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/gallery/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/about/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/contact/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/afterlight-cultural-archive/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/interval-health-companion/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/northstar-civic-platform/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/morrow-studio/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/ecam-entorns-produccio-virtual/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/mckallan-personatges-3d/",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "route": "/es/work/audi-e-tron/",
+      "width": 1440,
+      "passed": true
+    },
+    {
       "route": "/",
       "width": 1440,
       "passed": true
@@ -71,37 +176,37 @@
       "passed": true
     },
     {
-      "route": "/en/",
+      "route": "/work/afterlight-cultural-archive/",
       "width": 1440,
       "passed": true
     },
     {
-      "route": "/en/work/",
+      "route": "/work/interval-health-companion/",
       "width": 1440,
       "passed": true
     },
     {
-      "route": "/en/work/fieldnote-research-library/",
+      "route": "/work/northstar-civic-platform/",
       "width": 1440,
       "passed": true
     },
     {
-      "route": "/en/landing/",
+      "route": "/work/morrow-studio/",
       "width": 1440,
       "passed": true
     },
     {
-      "route": "/en/gallery/",
+      "route": "/work/ecam-entorns-produccio-virtual/",
       "width": 1440,
       "passed": true
     },
     {
-      "route": "/en/about/",
+      "route": "/work/mckallan-personatges-3d/",
       "width": 1440,
       "passed": true
     },
     {
-      "route": "/en/contact/",
+      "route": "/work/audi-e-tron/",
       "width": 1440,
       "passed": true
     },
@@ -141,6 +246,111 @@
       "passed": true
     },
     {
+      "route": "/ca/work/afterlight-cultural-archive/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/interval-health-companion/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/northstar-civic-platform/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/morrow-studio/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/ecam-entorns-produccio-virtual/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/mckallan-personatges-3d/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/ca/work/audi-e-tron/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/fieldnote-research-library/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/landing/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/gallery/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/about/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/contact/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/afterlight-cultural-archive/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/interval-health-companion/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/northstar-civic-platform/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/morrow-studio/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/ecam-entorns-produccio-virtual/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/mckallan-personatges-3d/",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "route": "/es/work/audi-e-tron/",
+      "width": 390,
+      "passed": true
+    },
+    {
       "route": "/",
       "width": 390,
       "passed": true
@@ -176,37 +386,37 @@
       "passed": true
     },
     {
-      "route": "/en/",
+      "route": "/work/afterlight-cultural-archive/",
       "width": 390,
       "passed": true
     },
     {
-      "route": "/en/work/",
+      "route": "/work/interval-health-companion/",
       "width": 390,
       "passed": true
     },
     {
-      "route": "/en/work/fieldnote-research-library/",
+      "route": "/work/northstar-civic-platform/",
       "width": 390,
       "passed": true
     },
     {
-      "route": "/en/landing/",
+      "route": "/work/morrow-studio/",
       "width": 390,
       "passed": true
     },
     {
-      "route": "/en/gallery/",
+      "route": "/work/ecam-entorns-produccio-virtual/",
       "width": 390,
       "passed": true
     },
     {
-      "route": "/en/about/",
+      "route": "/work/mckallan-personatges-3d/",
       "width": 390,
       "passed": true
     },
     {
-      "route": "/en/contact/",
+      "route": "/work/audi-e-tron/",
       "width": 390,
       "passed": true
     }

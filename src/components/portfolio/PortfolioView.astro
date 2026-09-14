@@ -1,10 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/common/Header.astro';
 import Footer from '@/components/common/Footer.astro';
 import Picture from '@/components/ui/Picture.astro';
 import GalleryView from './GalleryView.astro';
+import ImageLightbox from './ImageLightbox.astro';
+import { imagePresentation } from '@/lib/image-presentation';
 import ContactForm from './ContactForm.astro';
 import { getTranslations } from '@/lib/i18n';
 import {
@@ -14,7 +16,6 @@ import {
   pageLanguage,
   localLink,
   projectOrder,
-  projectEditorial,
   serviceImages,
 } from '@/lib/portfolio';
 export interface Props {
@@ -31,14 +32,16 @@ const projects = (await getCollection('projects')).sort(
   (a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id),
 );
 const project = projects.find((p) => p.id === slug);
-const editorial = projectEditorial[slug ?? ''] ?? {};
+const translated = (p: CollectionEntry<'projects'>) =>
+  language === 'ca' ? p.data : (p.data.translations?.[language] ?? p.data);
+const editorial = project ? translated(project) : undefined;
 const nextProject =
   projects[(projects.findIndex((p) => p.id === slug) + 1) % projects.length];
 const title =
   page === 'home'
     ? home.title
     : page === 'detail'
-      ? project?.data.title
+      ? editorial?.title
       : page === 'services'
         ? t.services
         : page === 'work'
@@ -49,7 +52,7 @@ const title =
 <BaseLayout
   title={title}
   description={page === 'home' ? t.hero : `${title} — Xavi Calvo`}
-  ogImage={page === 'detail' ? project?.data.cover.src : home.image.src}
+  ogImage={page === 'detail' ? project?.data.cover?.src : home.image.src}
 >
   <Header overlay={page === 'home'} />
   <main id="main" tabindex="-1">
@@ -72,13 +75,9 @@ const title =
             <>
               <h1>{home.title}</h1>
               <p>{t.hero}</p>
-              <span>{t.engine}</span>
-              <a class="line-link" href={link('/work/')}>
-                {t.work} ↗
-              </a>
             </>
           </div>
-          <span class="hero-credit">Xavi Calvo / CGI</span>
+          <span class="hero-credit">{t.aiNotice}</span>
         </section>
       )
     }
@@ -90,20 +89,24 @@ const title =
             <div class="work-grid">
               {projects.map((p, index) => (
                 <a class="work-card" href={link(`/work/${p.id}/`)}>
-                  <Picture
-                    src={p.data.cover}
-                    alt={p.data.title}
-                    widths={[400, 800, 1200]}
-                    sizes="(min-width: 1000px) 30vw, (min-width: 650px) 46vw, 92vw"
-                    loading={index < 3 ? 'eager' : 'lazy'}
-                  />
+                  {p.data.cover ? (
+                    <Picture
+                      src={p.data.cover}
+                      alt={translated(p).title}
+                      widths={[400, 800, 1200]}
+                      sizes="(min-width: 1000px) 30vw, (min-width: 650px) 46vw, 92vw"
+                      loading={index < 3 ? 'eager' : 'lazy'}
+                    />
+                  ) : (
+                    <div class="work-cover-placeholder">
+                      <span>{t.coverPending}</span>
+                    </div>
+                  )}
                   <div>
-                    <h2>{p.data.title}</h2>
+                    <h2>{translated(p).title}</h2>
                     <span aria-hidden="true">↗</span>
                   </div>
-                  {projectEditorial[p.id]?.role && (
-                    <p>{projectEditorial[p.id].role}</p>
-                  )}
+                  <p>{p.data.client}</p>
                 </a>
               ))}
             </div>
@@ -112,40 +115,65 @@ const title =
       )
     }
     {
-      page === 'detail' && project && (
+      page === 'detail' && project && editorial && (
         <article class="portfolio-container page-section project-detail">
           <>
             <a class="back-link" href={link('/work/')}>
               ← {t.back}
             </a>
-            <h1 class="page-title">{project.data.title}</h1>
+            <h1 class="page-title">{editorial.title}</h1>
           </>
-          <Picture
-            src={project.data.cover}
-            alt={project.data.title}
-            widths={[600, 1200, 1920]}
-            sizes="92vw"
-            loading="eager"
-            fetchpriority="high"
-            class="detail-cover"
-          />
+          <div class="detail-cover-frame">
+            {project.data.cover ? (
+              <button
+                type="button"
+                class="project-image-trigger"
+                data-gallery-image
+                data-src={project.data.cover.src}
+                data-title={editorial.title}
+                data-ratio={imagePresentation(project.data.cover).ratio}
+                data-position={imagePresentation(project.data.cover).position}
+                aria-label={editorial.title}
+                aria-haspopup="dialog"
+              >
+                <Picture
+                  src={project.data.cover}
+                  alt={editorial.title}
+                  widths={[400, 800, 1200]}
+                  sizes="(min-width: 1001px) 30vw, (min-width: 601px) 46vw, 92vw"
+                  loading="eager"
+                  fetchpriority="high"
+                  class="detail-cover"
+                />
+              </button>
+            ) : (
+              <div class="detail-cover-placeholder">{t.coverPending}</div>
+            )}
+          </div>
           <div class="detail-context">
             <div>
+              <h2>{t.context}</h2>
+              <p>{editorial.context}</p>
               <h2>{t.contribution}</h2>
-              {editorial.contribution?.[language] && (
-                <p>{editorial.contribution[language]}</p>
+              {editorial.contribution && <p>{editorial.contribution}</p>}
+              {project.data.links?.live && (
+                <a
+                  class="line-link"
+                  href={project.data.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.course} ↗
+                </a>
               )}
             </div>
-            {(editorial.year ||
-              editorial.role ||
-              editorial.tools?.length ||
-              editorial.client) && (
+            {
               <dl>
                 {[
-                  [t.year, editorial.year],
+                  [t.period, editorial.period],
                   [t.role, editorial.role],
-                  [t.tools, editorial.tools?.join(' · ')],
-                  [t.client, editorial.client],
+                  [t.tools, project.data.tech.join(' · ')],
+                  [t.client, project.data.client],
                 ].map(
                   ([label, value]) =>
                     value && (
@@ -156,25 +184,37 @@ const title =
                     ),
                 )}
               </dl>
-            )}
+            }
           </div>
-          {editorial.images?.length && (
+          {project.data.images && project.data.images.length > 0 && (
             <section>
               <h2>{t.process}</h2>
               <div class="detail-images">
-                {editorial.images.map((img) => (
+                {project.data.images.map((img) => (
                   <figure>
-                    <Picture
-                      src={img.src}
-                      alt={img.alt}
-                      sizes="(min-width: 700px) 45vw, 92vw"
-                    />
-                    {img.caption && <figcaption>{img.caption}</figcaption>}
+                    <button
+                      type="button"
+                      class="project-image-trigger"
+                      data-gallery-image
+                      data-src={img.src.src}
+                      data-title={img.alt ?? editorial.title}
+                      data-ratio={imagePresentation(img.src).ratio}
+                      data-position={imagePresentation(img.src).position}
+                      aria-label={img.alt ?? editorial.title}
+                      aria-haspopup="dialog"
+                    >
+                      <Picture
+                        src={img.src}
+                        alt={img.alt ?? editorial.title}
+                        sizes="(min-width: 700px) 45vw, 92vw"
+                      />
+                    </button>
                   </figure>
                 ))}
               </div>
             </section>
           )}
+          <ImageLightbox language={language} />
           <nav class="detail-navigation" aria-label={nav.projects}>
             <a href={link('/work/')}>← {t.back}</a>
             {nextProject && (
@@ -209,6 +249,7 @@ const title =
                 </article>
               ))}
             </div>
+            <p class="ai-notice">{t.aiServicesNotice}</p>
           </>
         </section>
       )
@@ -218,7 +259,6 @@ const title =
         <section class="portfolio-container page-section">
           <>
             <h1 class="page-title">{nav.gallery}</h1>
-            <p class="section-intro">{t.galleryIntro}</p>
             <GalleryView language={language} />
           </>
         </section>
@@ -229,6 +269,7 @@ const title =
         <section class="portfolio-container page-section about-layout">
           <>
             <div>
+              <h1 class="sr-only">{nav.about}</h1>
               <h2 class="profile-specialty">{t.specialty}</h2>
               {profile.biography[language] && (
                 <p>{profile.biography[language]}</p>

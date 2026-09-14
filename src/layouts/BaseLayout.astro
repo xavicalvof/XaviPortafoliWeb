@@ -76,8 +76,8 @@ const documentLanguage = pageLanguage(Astro.url);
       const legacyLanguage = legacyURL.searchParams.get('lang');
       if (legacyLanguage && ['es', 'ca', 'en'].includes(legacyLanguage)) {
         legacyURL.pathname =
-          (legacyLanguage === 'es' ? '' : '/' + legacyLanguage) +
-          legacyURL.pathname.replace(/^\/(ca|en)(?=\/)/, '');
+          (legacyLanguage === 'en' ? '' : '/' + legacyLanguage) +
+          (legacyURL.pathname.replace(/^\/(ca|en|es)(?=\/|$)/, '') || '/');
         legacyURL.searchParams.delete('lang');
         location.replace(legacyURL.href);
       }
@@ -104,8 +104,7 @@ const documentLanguage = pageLanguage(Astro.url);
       })();`}
     />
 
-    <!-- The theme ships a system-ui font stack (see tokens.css --font-sans),
-         so there are no web fonts to preconnect or load. -->
+    <!-- Display and body fonts are served locally through brand.css. -->
   </head>
   <body>
     <!-- Skip to content link -->

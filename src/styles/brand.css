@@ -1,4 +1,4 @@
-/* Xavi Calvo — DISSENY.md. Original brand guide remains in Brand.astro. */
+/* Xavi Calvo — quieter typography, supplied vector brand, cinematic imagery. */
 @font-face {
   font-family: 'Inter Local';
   src: url('../assets/fonts/Inter-Regular.ttf') format('truetype');
@@ -11,12 +11,20 @@
   font-weight: 700;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Space Grotesk Local';
+  src: url('../assets/fonts/SpaceGrotesk.ttf') format('truetype');
+  font-weight: 300 700;
+  font-display: swap;
+}
 :root,
 [data-theme='dark'] {
   --brand-magenta: #b51b8a;
   --brand-lime: #a8cf65;
   --font-sans: 'Inter Local', sans-serif;
-  --font-display: Impact, 'Arial Narrow', 'Inter Local', sans-serif;
+  --font-display: 'Space Grotesk Local', sans-serif;
+  --portfolio-columns: 3;
+  --cover-ratio: 2.15;
   --color-bg: #08090b;
   --color-surface: #101114;
   --color-text: #f3f0eb;
@@ -49,9 +57,9 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.005em;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.025em;
 }
 .portfolio-container {
   width: 92%;
@@ -62,14 +70,20 @@ h3 {
   padding-top: 34px;
   padding-bottom: 12px;
 }
-.page-title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.005em;
-  font-size: clamp(2.8rem, 5.3vw, 5.4rem);
-  line-height: 1.08;
-  color: var(--color-text);
-  margin-bottom: 30px;
+.page-section .page-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  color: var(--color-text-muted);
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+.project-image-trigger {
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
 }
 .section-intro {
   color: var(--color-text-muted);
@@ -108,7 +122,10 @@ a:hover {
   z-index: -2;
 }
 .home-hero > picture {
-  display: contents;
+  position: absolute;
+  inset: 0;
+  display: block;
+  z-index: -2;
 }
 .home-hero::after {
   content: '';
@@ -127,7 +144,9 @@ a:hover {
   width: 100%;
 }
 .hero-copy h1 {
-  font-size: clamp(3rem, 6.2vw, 7rem);
+  font-size: clamp(2.5rem, 5.2vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
   margin-bottom: 12px;
   line-height: 1.07;
 }
@@ -135,13 +154,6 @@ a:hover {
   font-size: clamp(1rem, 1.45vw, 1.6rem);
   letter-spacing: 0.035em;
   margin-bottom: 8px;
-}
-.hero-copy > span {
-  display: block;
-  font-size: 14px;
-}
-.hero-copy .line-link {
-  margin-top: 24px;
 }
 .hero-credit {
   position: absolute;
@@ -152,7 +164,7 @@ a:hover {
 .work-grid,
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--portfolio-columns), minmax(0, 1fr));
   gap: 28px 26px;
 }
 .services-grid {
@@ -164,27 +176,57 @@ a:hover {
 }
 .work-card img {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: var(--cover-ratio);
   object-fit: cover;
 }
-.work-card > div {
+.work-cover-placeholder {
+  aspect-ratio: var(--cover-ratio);
+  display: grid;
+  place-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-muted);
+}
+.detail-cover-placeholder {
+  aspect-ratio: var(--cover-ratio);
+  display: grid;
+  place-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-muted);
+}
+.work-card > div:not(.work-cover-placeholder) {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   margin-top: 10px;
 }
 .work-card h2 {
-  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.work-card > div > span {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+.service-card h2 {
+  font-size: clamp(1.15rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.35;
   margin: 0;
 }
 .work-card p {
   color: var(--color-text-muted);
-  margin: 6px 0 0;
+  margin: 5px 0 0;
+  font-size: 15px;
 }
 .service-card img,
 .service-placeholder {
   width: 100%;
-  aspect-ratio: 2.15;
+  aspect-ratio: var(--cover-ratio);
   object-fit: cover;
 }
 .service-placeholder {
@@ -201,7 +243,6 @@ a:hover {
   color: var(--brand-magenta);
 }
 .service-card h2 {
-  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
   margin: 10px 0 5px;
 }
 .service-card p {
@@ -213,10 +254,15 @@ a:hover {
   margin-bottom: 20px;
   color: var(--color-text);
 }
+.detail-cover-frame {
+  width: calc(
+    (100% - (var(--portfolio-columns) - 1) * 26px) / var(--portfolio-columns)
+  );
+}
 .detail-cover {
   width: 100%;
-  max-height: 75svh;
-  object-fit: contain;
+  aspect-ratio: var(--cover-ratio);
+  object-fit: cover;
   background: var(--color-surface);
 }
 .detail-context {
@@ -226,11 +272,16 @@ a:hover {
   padding-block: 36px;
 }
 .detail-context h2 {
-  font-family: var(--font-sans);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 500;
   text-transform: none;
   font-size: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
+}
+.project-detail > section > h2,
+.profile-specialty,
+.contact-layout h2 {
+  margin-bottom: 28px;
 }
 .detail-context p {
   color: var(--color-text-muted);
@@ -280,7 +331,9 @@ a:hover {
   margin-top: 32px;
 }
 .profile-specialty {
-  font-size: clamp(2rem, 3.3vw, 3.5rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.3;
 }
 .profile-photo {
   aspect-ratio: 4/4.2;
@@ -305,10 +358,12 @@ a:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6vw;
-  padding-top: 36px;
+  padding-top: 0;
 }
 .contact-layout h2 {
-  font-size: clamp(2rem, 3.5vw, 3.8rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.3;
 }
 .email-link {
   margin-top: 44px;
@@ -362,7 +417,7 @@ a:hover {
 .gallery-grid {
   columns: 3;
   column-gap: 16px;
-  margin-top: 28px;
+  margin-top: 0;
 }
 .gallery-tile {
   position: relative;
@@ -378,32 +433,33 @@ a:hover {
   width: 100%;
   height: auto;
 }
-.gallery-tile > span {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 10px;
+.gallery-tile {
+  cursor: zoom-in;
+}
+.ai-notice {
+  margin: 24px 0 0;
   font-size: 12px;
   color: var(--color-text-muted);
 }
 .lightbox {
-  width: min(96vw, 1600px);
-  max-width: 96vw;
-  height: 94svh;
-  max-height: 94svh;
+  width: min(86vw, 1240px);
+  max-width: 90vw;
+  max-height: 90svh;
   margin: auto;
-  padding: 16px;
-  border: 1px solid var(--glass-border);
-  background: var(--color-bg);
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--color-text);
+  overflow: visible;
 }
 .lightbox::backdrop {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(8, 9, 11, 0.62);
 }
 .lightbox-toolbar {
   display: flex;
   justify-content: space-between;
   gap: 16px;
+  margin-bottom: 12px;
 }
 .lightbox button {
   min-width: 48px;
@@ -411,17 +467,19 @@ a:hover {
   padding: 8px 16px;
   color: var(--color-text);
   background: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
 }
-.lightbox-image {
+.lightbox-frame {
+  margin-inline: auto;
+  overflow: hidden;
+}
+.lightbox .lightbox-image {
   width: 100%;
-  height: calc(94svh - 140px);
-  object-fit: contain;
-  margin-top: 12px;
-}
-.lightbox p {
-  margin: 12px 0 0;
-  text-align: center;
-  font-size: 14px;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  filter: drop-shadow(0 12px 36px #0008);
 }
 html.gallery-open {
   overflow: hidden;
@@ -437,9 +495,8 @@ html.gallery-open {
   box-shadow: none;
 }
 @media (max-width: 1000px) {
-  .work-grid,
-  .services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  :root {
+    --portfolio-columns: 2;
   }
   .gallery-grid {
     columns: 2;
@@ -475,16 +532,17 @@ html.gallery-open {
   }
 }
 @media (max-width: 600px) {
-  .work-grid,
-  .services-grid,
+  :root {
+    --portfolio-columns: 1;
+  }
   .detail-images {
     grid-template-columns: 1fr;
   }
   .gallery-grid {
-    columns: 1;
+    columns: 2;
   }
   .hero-copy h1 {
-    font-size: clamp(2.7rem, 11vw, 4rem);
+    font-size: clamp(2.3rem, 9vw, 3.5rem);
   }
   .service-placeholder {
     aspect-ratio: 2.15;

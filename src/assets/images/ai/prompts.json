@@ -1,0 +1,34 @@
+{
+  "tool": "Built-in image_gen",
+  "purpose": "Temporary AI illustrations for home and services; not real portfolio work",
+  "prompts": [
+    {
+      "name": "home",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. A coastal modernist observatory at twilight, weathered concrete architecture at the left edge, Mediterranean rocky shoreline and distant islands, warm interior lights, subtle sunset glow on the horizon, expansive dark blue sky and quiet open center for webpage headline. Panoramic establishing view, atmospheric and sophisticated, no people."
+    },
+    {
+      "name": "environments",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. An overgrown stone courtyard in a misty forest, richly detailed ancient architecture, realistic vegetation, shafts of warm sunlight, environment art scene, wide establishing composition."
+    },
+    {
+      "name": "virtual-production",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. A film studio with a curved LED volume showing a rugged mountain landscape, a professional cinema camera on a dolly in foreground, practical studio lighting and rigging, realistic behind-the-scenes composition. No visible people or logos."
+    },
+    {
+      "name": "immersive",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. An elegant dark museum installation with large wraparound projection walls showing an underwater ocean and a whale, reflections on floor, immersive spacious architecture, no people."
+    },
+    {
+      "name": "previsualization",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. A cinematic gray clay render of a city street for film previsualization, simplified untextured buildings and parked cars, clear perspective, neutral gray materials, camera framing composition, no UI overlays or text."
+    },
+    {
+      "name": "gaussian-splatting",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. A Mediterranean stone courtyard captured as a detailed 3D Gaussian splat point cloud: left side photoreal warm stone arches and olive tree, right side dissolving naturally into dense colored spatial particles against charcoal background, one continuous technical visualization, no labels."
+    },
+    {
+      "name": "photogrammetry",
+      "prompt": "Use case: stylized-concept. Create one polished cinematic photorealistic 3D concept image for a real-time environment artist website, temporary AI illustrative asset. Wide landscape 16:9. Restrained natural colors, deep charcoal shadows, believable materials, elegant cinematic lighting. No text, no lettering, no logos, no watermarks, no UI, no collage. An antique weathered carved stone capital as a photogrammetry 3D asset on a dark studio background, left surface richly realistic with chipped stone and moss, right edge gently revealing a fine triangular mesh, careful museum lighting, no text."
+    }
+  ]
+}

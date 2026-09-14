@@ -5,7 +5,7 @@ import Picture from '@/components/ui/Picture.astro';
 
 export interface Props {
   title: string;
-  cover: ImageMetadata;
+  cover?: ImageMetadata;
   coverAlt?: string;
   role: string;
   year: number;
@@ -32,15 +32,19 @@ const {
 <article class="project">
   <GlassCard href={href} padding="none" radius="xl" class="project__card">
     <div class="project__visual" transition:name={`project-image-${slug}`}>
-      <Picture
-        src={cover}
-        alt={coverAlt}
-        widths={[400, 800, 1200]}
-        sizes="(min-width: 900px) 33vw, 100vw"
-        loading={index === 1 ? 'eager' : 'lazy'}
-        fetchpriority={index === 1 ? 'high' : undefined}
-        class="project__image"
-      />
+      {
+        cover && (
+          <Picture
+            src={cover}
+            alt={coverAlt}
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 900px) 33vw, 100vw"
+            loading={index === 1 ? 'eager' : 'lazy'}
+            fetchpriority={index === 1 ? 'high' : undefined}
+            class="project__image"
+          />
+        )
+      }
     </div>
 
     <div class="project__body">

@@ -1,39 +1,17 @@
 ---
-title: 'Berlín S2'
-summary: 'A living research archive that makes years of interviews, observations, and decisions searchable across product teams.'
-description: 'Fieldnote connects raw evidence to product decisions without flattening qualitative research into a dashboard.'
-cover: '../../assets/images/Proyectos/Berlín S2/berlin-2-nou-2.jpg'
-coverAlt: 'Portada del proyecto Berlín S2'
-images:
-  - '../../assets/images/projects/fieldnote-library.webp'
-  - '../../assets/images/projects/fieldnote-evidence.webp'
-  - '../../assets/images/projects/fieldnote-timeline.webp'
-tech:
-  - 'Next.js'
-  - 'TypeScript'
-  - 'PostgreSQL'
-  - 'Meilisearch'
-role: 'Design engineering'
+title: "Berlín — Temporada 2"
+summary: "Creació d’escenaris amb Unreal Engine per al plató de producció virtual de la segona temporada de Berlín. El projecte incloïa diverses carreteres nocturnes, amb un control precís de la il·luminació i el detall, i un entorn que combinava Gaussian splatting amb elements de 3D convencional."
+description: "Creació d’escenaris amb Unreal Engine per al plató de producció virtual de la segona temporada de Berlín. El projecte incloïa diverses carreteres nocturnes, amb un control precís de la il·luminació i el detall, i un entorn que combinava Gaussian splatting amb elements de 3D convencional. La meva responsabilitat se centrava en la creació dels escenaris i en la integració d’aquestes tècniques per utilitzar-les en rodatge."
+context: "Creació d’escenaris amb Unreal Engine per al plató de producció virtual de la segona temporada de Berlín. El projecte incloïa diverses carreteres nocturnes, amb un control precís de la il·luminació i el detall, i un entorn que combinava Gaussian splatting amb elements de 3D convencional."
+contribution: "La meva responsabilitat se centrava en la creació dels escenaris i en la integració d’aquestes tècniques per utilitzar-les en rodatge."
+period: "febrer de 2025 – agost de 2025"
+role: "Artista d’entorns 3D i director tècnic d’Unreal Engine en rodatge"
+client: "Vancouver Media"
 year: 2025
-featured: false
-links:
-  github: 'https://github.com/example/fieldnote'
-client: 'Sable Product Lab'
-duration: '12 weeks'
+tech: ["Unreal Engine"]
+cover: "../../assets/images/Proyectos/Berlín S2/berlin-2-nou-2.jpg"
+coverAlt: "Berlín — Temporada 2"
+translations: {"es":{"title":"Berlín — Temporada 2","period":"febrero de 2025 – agosto de 2025","role":"Artista de entornos 3D y director técnico de Unreal Engine en rodaje","context":"Creación de escenarios con Unreal Engine para el plató de producción virtual de la segunda temporada de Berlín. El proyecto incluía varias carreteras nocturnas, con un control preciso de la iluminación y el detalle, y un entorno que combinaba Gaussian splatting con elementos de 3D convencional.","contribution":"Mi responsabilidad se centraba en la creación de los escenarios y en la integración de estas técnicas para utilizarlas en rodaje."},"en":{"title":"Berlín — Season 2","period":"February 2025 – August 2025","role":"3D environment artist and on-set Unreal Engine technical director","context":"Environment creation in Unreal Engine for the virtual production stage of Berlín’s second season. The project included several night roads with precise lighting and detail control, and an environment combining Gaussian splatting with conventional 3D elements.","contribution":"My responsibility focused on creating the environments and integrating these techniques for use during filming."}}
 ---
 
-## Research should accumulate
-
-The team had hundreds of interview notes, but each new project began with another round of discovery. Documents were easy to store and difficult to retrieve; decisions rarely carried the evidence that shaped them.
-
-Fieldnote treats observations, themes, participants, and decisions as related objects. A researcher can move from a claim to its source context, while a product manager can see where evidence is strong, old, or contradictory.
-
-## Designed for nuance
-
-Search combines exact filters with forgiving language matching. Results show the surrounding passage rather than an isolated keyword, preserving the context that makes qualitative material useful.
-
-The interface deliberately avoids scores and certainty theatre. Teams can mark tension between findings, record dissent, and show when an insight has been superseded.
-
-## Outcome
-
-The library became part of weekly planning rather than a destination used only by researchers. Repeated discovery work declined, and roadmap proposals began linking directly to supporting evidence.
+Creació d’escenaris amb Unreal Engine per al plató de producció virtual de la segona temporada de Berlín. El projecte incloïa diverses carreteres nocturnes, amb un control precís de la il·luminació i el detall, i un entorn que combinava Gaussian splatting amb elements de 3D convencional. La meva responsabilitat se centrava en la creació dels escenaris i en la integració d’aquestes tècniques per utilitzar-les en rodatge.

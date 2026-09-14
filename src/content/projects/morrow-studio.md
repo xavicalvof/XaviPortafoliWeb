@@ -1,26 +1,17 @@
 ---
-title: 'Mapi'
-summary: 'A focused identity and portfolio for an independent studio making useful objects for everyday rituals.'
-description: 'Morrow Studio combines a quiet catalogue with a tactile editorial voice, making the story behind each object part of the product.'
-cover: '../../assets/images/Proyectos/Mapi/Portada.jpg'
-coverAlt: 'Portada del proyecto Mapi'
-tech:
-  - 'Astro'
-  - 'CSS'
-  - 'Shopify'
-role: 'Brand and web design'
-year: 2024
-featured: false
-client: 'Morrow Studio'
-duration: '8 weeks'
+title: "Mapi"
+summary: "Desenvolupament d’un personatge virtual renderitzat en temps real per a una producció multicàmera, amb seguiment de Mo-Sys per a les càmeres i per al cap virtual."
+description: "Desenvolupament d’un personatge virtual renderitzat en temps real per a una producció multicàmera, amb seguiment de Mo-Sys per a les càmeres i per al cap virtual. Com a supervisor a Magic Fennec, en col·laboració amb Iralta, em vaig encarregar de programar i desenvolupar un sistema amb Unreal Engine i DMX per coordinar el funcionament del personatge amb la il·luminació del plató i els seus efectes.Durant el rodatge estava pendent de supervisar que tot el sistema funcioni correctament així com està en sincronia amb el realitzador per llençar els diferents efectes tant de llums com de partícules. A nivell artístic també vaig crear amb Niagara una gran quantitat d’efectes que s’anaven llançant i actualitzant en cada programa."
+context: "Desenvolupament d’un personatge virtual renderitzat en temps real per a una producció multicàmera, amb seguiment de Mo-Sys per a les càmeres i per al cap virtual."
+contribution: "Com a supervisor a Magic Fennec, en col·laboració amb Iralta, em vaig encarregar de programar i desenvolupar un sistema amb Unreal Engine i DMX per coordinar el funcionament del personatge amb la il·luminació del plató i els seus efectes. Durant el rodatge estava pendent de supervisar que tot el sistema funcioni correctament així com està en sincronia amb el realitzador per llençar els diferents efectes tant de llums com de partícules. A nivell artístic també vaig crear amb Niagara una gran quantitat d’efectes que s’anaven llançant i actualitzant en cada programa."
+period: "juny de 2022 – agost de 2022"
+role: "Supervisor d’Unreal Engine"
+client: "RTVE"
+year: 2022
+tech: ["Unreal Engine","DMX","Niagara","Mo-Sys"]
+cover: "../../assets/images/Proyectos/Mapi/Portada.jpg"
+coverAlt: "Mapi"
+translations: {"es":{"title":"Mapi","period":"junio de 2022 – agosto de 2022","role":"Supervisor de Unreal Engine","context":"Desarrollo de un personaje virtual renderizado en tiempo real para una producción multicámara, con seguimiento de Mo-Sys para las cámaras y para la cabeza virtual.","contribution":"Como supervisor en Magic Fennec, en colaboración con Iralta, me encargué de programar y desarrollar un sistema con Unreal Engine y DMX para coordinar el personaje con la iluminación del plató y sus efectos. Durante el rodaje supervisaba el funcionamiento del sistema y me coordinaba con realización para lanzar los efectos de luces y partículas. En el apartado artístico también creé con Niagara numerosos efectos que se lanzaban y actualizaban en cada programa."},"en":{"title":"Mapi","period":"June 2022 – August 2022","role":"Unreal Engine supervisor","context":"Development of a real-time rendered virtual character for a multicamera production, with Mo-Sys tracking for the cameras and virtual head.","contribution":"As a supervisor at Magic Fennec, in collaboration with Iralta, I programmed and developed an Unreal Engine and DMX system coordinating the character with the studio lighting and effects. During filming, I supervised the system and coordinated with the production director to trigger lighting and particle effects. On the artistic side, I also created numerous Niagara effects that were triggered and updated for each programme."}}
 ---
 
-## Useful objects, clearly presented
-
-Morrow had a strong point of view but no consistent way to present its collection. The new site pairs concise product information with small editorial details that explain how each object fits into daily life.
-
-The system is intentionally light: fast pages, restrained transitions, and a flexible foundation the studio can maintain without a large production workflow.
-
-## Outcome
-
-Morrow launched with a sharper catalogue, a more memorable voice, and a structure ready for future collections.
+Desenvolupament d’un personatge virtual renderitzat en temps real per a una producció multicàmera, amb seguiment de Mo-Sys per a les càmeres i per al cap virtual. Com a supervisor a Magic Fennec, en col·laboració amb Iralta, em vaig encarregar de programar i desenvolupar un sistema amb Unreal Engine i DMX per coordinar el funcionament del personatge amb la il·luminació del plató i els seus efectes.Durant el rodatge estava pendent de supervisar que tot el sistema funcioni correctament així com està en sincronia amb el realitzador per llençar els diferents efectes tant de llums com de partícules. A nivell artístic també vaig crear amb Niagara una gran quantitat d’efectes que s’anaven llançant i actualitzant en cada programa.
